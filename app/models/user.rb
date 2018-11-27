@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum gender: %i[masculine femenine]
+  enum gender: %i[male female other]
   enum access_level: %i[user admin]
 end

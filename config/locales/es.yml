@@ -1,0 +1,22 @@
+es:
+  activerecord:
+    models:
+      user: 'Usuario'
+      hostel: 'Hostal'
+    attributes:
+      user:
+        email: 'Correo electrónico'
+        first_name: 'Primer nombre'
+        middle_name: 'Segundo nombre'
+        first_surname: 'Apellido parerno'
+        second_surname: 'Apellido materno'
+        gender: 'Sexo'
+        bio: 'Biografía'
+        password: 'Contraseña'
+        password_confirmation: 'Confirmar contraseña'
+        access_level: 'Nivel de acceso'
+      hostel:
+        user_id: 'Usuario'
+        name: 'Nombre'
+        address: 'Dirección'
+        description: 'Descripción'

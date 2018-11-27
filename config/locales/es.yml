@@ -11,6 +11,10 @@ es:
         first_surname: 'Apellido parerno'
         second_surname: 'Apellido materno'
         gender: 'Sexo'
+        genders:
+          male: 'Masculino'
+          female: 'Femenino'
+          other: 'Otro'
         bio: 'Biografía'
         password: 'Contraseña'
         password_confirmation: 'Confirmar contraseña'

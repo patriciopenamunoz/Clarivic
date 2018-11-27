@@ -20,7 +20,7 @@
 
 <div class="field">
   <%= f.label :gender %><br />
-  <%= f.select :gender, @genders.keys %>
+  <%= f.select :gender, @genders.keys.map {|g| [I18n.t("activerecord.attributes.user.genders.#{g}"), g]} %>
 </div>
 
 <div class="field">

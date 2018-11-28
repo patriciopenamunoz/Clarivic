@@ -4,7 +4,7 @@ class HostelsController < ApplicationController
   # GET /hostels
   # GET /hostels.json
   def index
-    @hostels = Hostel.all
+    @hostels = Hostel.order(id: :desc).limit(4)
   end
 
   # GET /hostels/1

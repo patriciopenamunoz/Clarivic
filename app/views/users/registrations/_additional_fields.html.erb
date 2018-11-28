@@ -1,29 +1,29 @@
-<div class="field">
+<div class="form-group">
   <%= f.label :first_name %><br />
-  <%= f.text_field :first_name %>
+  <%= f.text_field :first_name, class:"form-control" %>
 </div>
 
-<div class="field">
+<div class="form-group">
   <%= f.label :middle_name %><br />
-  <%= f.text_field :middle_name %>
+  <%= f.text_field :middle_name, class:"form-control" %>
 </div>
 
-<div class="field">
+<div class="form-group">
   <%= f.label :first_surname %><br />
-  <%= f.text_field :first_surname %>
+  <%= f.text_field :first_surname, class:"form-control" %>
 </div>
 
-<div class="field">
+<div class="form-group">
   <%= f.label :second_surname %><br />
-  <%= f.text_field :second_surname %>
+  <%= f.text_field :second_surname, class:"form-control" %>
 </div>
 
-<div class="field">
+<div class="form-group">
   <%= f.label :gender %><br />
-  <%= f.select :gender, @genders.keys.map {|g| [I18n.t("activerecord.attributes.user.genders.#{g}"), g]} %>
+  <%= f.select :gender, @genders.keys.map {|g| [I18n.t("activerecord.attributes.user.genders.#{g}"), g]},{} ,class:"form-control" %>
 </div>
 
-<div class="field">
+<div class="form-group">
   <%= f.label :bio %><br />
-  <%= f.text_area :bio %>
+  <%= f.text_area :bio, class:"form-control" %>
 </div>

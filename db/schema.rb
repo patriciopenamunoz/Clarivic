@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_232331) do
+ActiveRecord::Schema.define(version: 2018_12_03_235007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2018_12_03_232331) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "commune_id"
+    t.index ["commune_id"], name: "index_hostels_on_commune_id"
     t.index ["user_id"], name: "index_hostels_on_user_id"
   end
 
@@ -84,5 +86,6 @@ ActiveRecord::Schema.define(version: 2018_12_03_232331) do
   end
 
   add_foreign_key "communes", "regions"
+  add_foreign_key "hostels", "communes"
   add_foreign_key "hostels", "users"
 end

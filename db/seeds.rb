@@ -10,6 +10,7 @@ require 'open-uri'
 puts 'Seed generation started:'
 puts '###############################'
 puts 'Cleaning registers'
+HostelRegistration.destroy_all
 Hostel.destroy_all
 Commune.destroy_all
 Region.destroy_all
@@ -426,7 +427,6 @@ if Rails.env == 'development'
       file = open('https://loremflickr.com/1280/960/hostel')
       puts '- DONE! Image downloaded'
       hostel = Hostel.new
-      hostel.user = user
       hostel.name = Faker::FunnyName.name
       hostel.address = Faker::Address.street_address
       hostel.description = Faker::Hipster.paragraph
@@ -437,7 +437,13 @@ if Rails.env == 'development'
         filename: "hostel_principal_image_#{hostel.id}.jpg",
         content_type: 'image/jpg'
       )
-      puts "- Hostel generated for #{user.email}: #{hostel.name}"
+      puts "- Hostel generated"
+      registration = HostelRegistration.new
+      registration.user = user
+      registration.hostel = hostel
+      registration.save
+      registration.admin!
+      puts "- Hostel registred by '#{user.email}'"
     end
   end
   puts '###############################'

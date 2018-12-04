@@ -10,9 +10,9 @@ require 'open-uri'
 puts 'Seed generation started:'
 puts '###############################'
 puts 'Cleaning registers'
+Hostel.destroy_all
 Commune.destroy_all
 Region.destroy_all
-Hostel.destroy_all
 User.destroy_all
 
 puts 'Creating admin user'

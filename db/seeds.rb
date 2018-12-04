@@ -430,6 +430,7 @@ if Rails.env == 'development'
       hostel.name = Faker::FunnyName.name
       hostel.address = Faker::Address.street_address
       hostel.description = Faker::Hipster.paragraph
+      hostel.commune = Commune.all.sample
       hostel.save
       hostel.principal_image.attach(
         io: file,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_003904) do
+ActiveRecord::Schema.define(version: 2018_12_04_005140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2018_12_04_003904) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["region_id"], name: "index_communes_on_region_id"
+  end
+
+  create_table "hostel_registrations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "hostel_id"
+    t.integer "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hostel_id"], name: "index_hostel_registrations_on_hostel_id"
+    t.index ["user_id"], name: "index_hostel_registrations_on_user_id"
   end
 
   create_table "hostels", force: :cascade do |t|
@@ -84,5 +94,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_003904) do
   end
 
   add_foreign_key "communes", "regions"
+  add_foreign_key "hostel_registrations", "hostels"
+  add_foreign_key "hostel_registrations", "users"
   add_foreign_key "hostels", "communes"
 end

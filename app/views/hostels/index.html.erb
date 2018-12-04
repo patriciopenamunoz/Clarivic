@@ -18,7 +18,7 @@
           class: 'card-img-top' %>
           <div class="card-body">
             <h4><%= hostel.name %></h4>
-            <h6><%= hostel.address %></h6>
+            <h6><%= "#{hostel.commune.short_name}, #{hostel.region.short_name}" %></h6>
           </div>
         </div>
       </div>

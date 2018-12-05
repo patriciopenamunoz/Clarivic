@@ -1,4 +1,5 @@
 class HostelsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :set_hostel, only: [:show, :edit, :update, :destroy]
 
   # GET /hostels
@@ -21,6 +22,8 @@ class HostelsController < ApplicationController
 
   # GET /hostels/1/edit
   def edit
+    @communes_json = Commune.all.map { |e| {id: e.id, name: e.short_name, region: e.region_id }  }.to_json.html_safe
+    @regions = Region.all
   end
 
   # POST /hostels

@@ -60,16 +60,3 @@
     <%= form.submit class:'btn btn-primary' %>
   </div>
 <% end %>
-<script>
-  var communes = <%= @communes_json %>
-  changeCommunes();
-
-  function changeCommunes() {
-    let region_id = $('#hostel_region').val();
-    let filter = communes.filter(commune => commune.region == region_id);
-    $('#hostel_commune_id>option').remove();
-    filter.forEach((e) => {
-      $('#hostel_commune_id').append(new Option(e.name, e.id));
-    });
-  }
-</script>

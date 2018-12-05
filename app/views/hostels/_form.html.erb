@@ -1,4 +1,4 @@
-<%= form_with(model: hostel, local: true) do |form| %>
+<%= form_with(model: hostel, local: true, multipart: true) do |form| %>
   <% if hostel.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(hostel.errors.count, "error") %> prohibited this hostel from being saved:</h2>
@@ -11,27 +11,65 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class:'form-control' %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :principal_image %>
+        <%= form.file_field :principal_image, class:'form-control-file' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= form.label 'Región' %>
+        <%= form.select 'region',
+          @regions.pluck(:short_name, :id), {},
+          class:'form-control', onChange: 'changeCommunes()' %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :commune %>
+        <%= form.select :commune_id,
+          [], {},
+          class:'form-control' %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :address %>
+        <%= form.text_field :address, class:'form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class:'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:'btn btn-primary' %>
   </div>
 <% end %>
+<script>
+  var communes = <%= @communes_json %>
+  changeCommunes();
+
+  function changeCommunes() {
+    let region_id = $('#hostel_region').val();
+    let filter = communes.filter(commune => commune.region == region_id);
+    $('#hostel_commune_id>option').remove();
+    filter.forEach((e) => {
+      $('#hostel_commune_id').append(new Option(e.name, e.id));
+    });
+  }
+</script>

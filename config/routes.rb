@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
   root 'hostels#index'
   resources :hostels
   devise_for :users, controllers: {

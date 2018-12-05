@@ -15,6 +15,7 @@
             <%= current_user.email %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "Ir al Dashboard", dashboard_index_path, class:'dropdown-item' %>
             <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class:'dropdown-item' %>
           </div>
         </li>

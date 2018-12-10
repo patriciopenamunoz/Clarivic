@@ -6,4 +6,12 @@ class Hostel < ApplicationRecord
 
   has_one :region, through: :commune
   has_one_attached :principal_image
+
+  def region_id
+    if defined? region.id
+      region.id
+    else
+      nil
+    end
+  end
 end

@@ -15,15 +15,14 @@ class HostelsController < ApplicationController
 
   # GET /hostels/new
   def new
-    @communes_json = Commune.all.map { |e| {id: e.id, name: e.short_name, region: e.region_id }  }.to_json.html_safe
     @regions = Region.all
     @hostel = Hostel.new
   end
 
   # GET /hostels/1/edit
   def edit
-    @communes_json = Commune.all.map { |e| {id: e.id, name: e.short_name, region: e.region_id }  }.to_json.html_safe
     @regions = Region.all
+    @communes = @hostel.region.communes
   end
 
   # POST /hostels
@@ -52,7 +51,7 @@ class HostelsController < ApplicationController
   def update
     respond_to do |format|
       if @hostel.update(hostel_params)
-        format.html { redirect_to @hostel, notice: 'Hostel was successfully updated.' }
+        format.html { redirect_to dashboard_index_path, notice: 'Hostel was successfully updated.' }
         format.json { render :show, status: :ok, location: @hostel }
       else
         format.html { render :edit }

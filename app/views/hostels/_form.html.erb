@@ -30,8 +30,8 @@
     <div class="col">
       <div class="form-group">
         <%= form.label 'Región' %>
-        <%= form.select 'region',
-          @regions.pluck(:short_name, :id), {},
+        <%= form.select :region_id,
+          ([['Seleccione una región', -1]] + @regions.pluck(:short_name, :id)), {},
           class:'form-control', onChange: 'changeCommunes()' %>
       </div>
     </div>
@@ -39,7 +39,7 @@
       <div class="form-group">
         <%= form.label :commune %>
         <%= form.select :commune_id,
-          [], {},
+          (defined?(@communes)).nil? ? [] : @communes.pluck(:short_name, :id), {},
           class:'form-control' %>
       </div>
     </div>

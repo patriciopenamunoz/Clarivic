@@ -63,9 +63,10 @@ class HostelsController < ApplicationController
   # DELETE /hostels/1
   # DELETE /hostels/1.json
   def destroy
+    @hostel.hostel_registrations.destroy_all
     @hostel.destroy
     respond_to do |format|
-      format.html { redirect_to hostels_url, notice: 'Hostel was successfully destroyed.' }
+      format.html { redirect_to dashboard_index_path, notice: 'Hostel was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

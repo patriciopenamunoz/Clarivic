@@ -26,7 +26,7 @@
               <div class="card-body">
                 <%= link_to "Modificar", edit_hostel_path(hostel), class: "btn btn-primary btn-sm" %>
                 <%= link_to "Administrar caracteristicas", "#", class: "btn btn-primary btn-sm" %>
-                <%= link_to "Eliminar", "#", class: "btn btn-primary btn-sm" %>
+                <%= link_to "Eliminar", hostel, method: :delete, class: "btn btn-primary btn-sm" %>
               </div>
             </div>
             <div class="separator-1"></div>

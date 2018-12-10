@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pages/index'
   get 'dashboard/index'
   root 'hostels#index'
   resources :hostels

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'pages/index'
   get 'dashboard/index'
-  root 'hostels#index'
+  root 'pages#index'
   resources :hostels
   devise_for :users, controllers: {
     sessions: 'users/sessions',

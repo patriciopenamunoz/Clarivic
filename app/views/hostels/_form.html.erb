@@ -32,14 +32,14 @@
         <%= form.label 'Región' %>
         <%= form.select :region_id,
           ([['Seleccione una región', -1]] + @regions.pluck(:short_name, :id)), {},
-          class:'form-control', onChange: 'changeCommunes()' %>
+          class:'form-control', onChange: "changeCommunes(this, '#hostel_commune_id')" %>
       </div>
     </div>
     <div class="col">
       <div class="form-group">
         <%= form.label :commune %>
         <%= form.select :commune_id,
-          (defined?(@communes)).nil? ? [] : @communes.pluck(:short_name, :id), {},
+          (defined?(@communes)).nil? ? [['Seleccione una comuna', -1]] : [['Seleccione una comuna', -1]] + @communes.pluck(:short_name, :id), {},
           class:'form-control' %>
       </div>
     </div>

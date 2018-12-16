@@ -5,8 +5,22 @@ class HostelsController < ApplicationController
   # GET /hostels
   # GET /hostels.json
   def index
-    @hostels = Hostel.all
+    if (params.has_key?(:region_id)) && (params[:region_id] != "-1")
+      if (params.has_key?(:commune_id)) && (params[:commune_id] != "-1")
+        @hostels = Commune.find(params[:commune_id]).hostels
+      else
+        @hostels = Region.find(params[:region_id]).hostels
+      end
+    else
+      @hostels = Hostel.all
+    end
+
     @regions = Region.all
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /hostels/1

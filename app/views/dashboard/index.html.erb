@@ -13,29 +13,7 @@
         </div>
       </div>
       <div class="separator-2"></div>
-      <% @my_hostels.each do |hostel| %>
-      <div class="card">
-        <div class="row">
-          <div class="col-3">
-            <%= image_tag hostel.principal_image.variant(resize: "300x300"),
-            class: 'img-fluid' %>
-          </div>
-          <div class="col">
-            <h4><%= hostel.name %></h4>
-            <div class="card">
-              <div class="card-body">
-                <%= link_to "Modificar", edit_hostel_path(hostel), class: "btn btn-primary btn-sm" %>
-                <%= link_to "Administrar caracteristicas", "#", class: "btn btn-primary btn-sm" %>
-                <%= link_to "Eliminar", hostel, method: :delete, class: "btn btn-primary btn-sm" %>
-              </div>
-            </div>
-            <div class="separator-1"></div>
-          </div>
-          <div class="col-1"></div>
-        </div>
-      </div>
-      <div class="separator-1"></div>
-      <% end %>
+      <%= render partial: 'my_hostel', collection: @my_hostels %>
     </div>
   </div>
 </div>

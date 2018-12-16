@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-auto">
+      <%= image_tag my_hostel.principal_image.variant(resize: "200x200") %>
+    </div>
+    <div class="col">
+      <div class="card-block px-2">
+        <div class="separator-1"></div>
+        <h4 class="card-title"><%= my_hostel.name %></h4>
+        <div class="card">
+          <div class="card-body">
+            <%= link_to "Modificar", edit_hostel_path(my_hostel), class: "btn btn-primary btn-sm" %>
+            <%= link_to "Administrar caracteristicas", "#", class: "btn btn-info btn-sm" %>
+            <%= link_to "Eliminar", my_hostel, method: :delete, class: "btn btn-danger btn-sm" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="separator-2"></div>

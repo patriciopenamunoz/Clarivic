@@ -1,7 +1,6 @@
 class HostelFeaturesController < ApplicationController
   def index
-    @hostel_features = HostelFeature.find_by(hostel_id: params[:hostel_id])
-    @hostel_features = [] if @hostel_features.nil?
+    @hostel_features = HostelFeature.where(hostel_id: params[:hostel_id])
     @hostel = Hostel.find(params[:hostel_id])
     @hostel_feature = HostelFeature.new
   end

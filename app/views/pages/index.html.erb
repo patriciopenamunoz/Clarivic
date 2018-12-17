@@ -14,7 +14,7 @@
     <% @hostels.each do |hostel| %>
       <div class="col-12 col-sm-6 col-lg-3">
         <div class="card showcase">
-          <%= image_tag hostel.principal_image.variant(resize: "400x400"),
+          <%= image_tag hostel.principal_image.variant(resize: "400x300!"),
           class: 'card-img-top' %>
           <div class="card-body">
             <h4><%= hostel.name %></h4>

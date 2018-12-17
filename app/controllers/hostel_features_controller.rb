@@ -15,4 +15,9 @@ class HostelFeaturesController < ApplicationController
   def destroy
   end
 
+  private
+
+  def hostel_feature_params
+    params.require(:hostel_feature).permit([:title, :description, :image])
+  end
 end

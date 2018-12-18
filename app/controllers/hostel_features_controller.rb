@@ -1,6 +1,6 @@
 class HostelFeaturesController < ApplicationController
   def index
-    @hostel_features = HostelFeature.where(hostel_id: params[:hostel_id])
+    @hostel_features = HostelFeature.where(hostel_id: params[:hostel_id]).order(id: :desc)
     @hostel = Hostel.find(params[:hostel_id])
     @hostel_feature = HostelFeature.new
   end
@@ -8,6 +8,10 @@ class HostelFeaturesController < ApplicationController
   def create
     params[:hostel_feature][:hostel_id] = params[:hostel_id]
     @hostel_feature = HostelFeature.create(hostel_feature_params)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update

@@ -1,4 +1,4 @@
-<div class="col-4">
+<div class="col-4" id="feature-<%= hostel_feature.id %>">
   <div class="card">
     <%= image_tag hostel_feature.image.variant('adaptive-resize': "300x120!"), class:'card-img-top' %>
     <div class="card-body">
@@ -8,4 +8,5 @@
       <p><%= hostel_feature.description %></p>
     </div>
   </div>
+  <div class="separator-2"></div>
 </div>

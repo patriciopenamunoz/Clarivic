@@ -8,7 +8,7 @@
           <div class="card-title">
             <h4>Añadir una nueva característica</h4>
           </div>
-          <%= form_with model: [@hostel, @hostel_feature] do |form| %>
+          <%= form_with model: [@hostel, @hostel_feature], id:'hostel-feature-form' do |form| %>
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
@@ -44,7 +44,7 @@
   <div class="separator-2"></div>
   <h1>Listado</h1>
   <div class="separator-1"></div>
-  <div class="row">
+  <div class="features-list row">
     <%= render partial:'hostel_feature', collection: @hostel_features %>
   </div>
   <div class="separator-3"></div>

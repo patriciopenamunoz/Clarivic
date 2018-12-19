@@ -1,7 +1,7 @@
 <div class="col-4" id="feature-<%= hostel_feature.id %>">
   <div class="card">
     <%= image_tag hostel_feature.image.variant('adaptive-resize': "300x120!"), class:'card-img-top' %>
-    <div class="card-body">
+    <div class="card-body" data-toggle="modal" data-target="#hostel-feature-modal" onclick="editHostelFeature(<%= hostel_feature.id %>, <%= hostel_feature.hostel_id %>)">
       <div class="card-title">
         <h4><%= hostel_feature.title %></h4>
       </div>

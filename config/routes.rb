@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'dashboard/index'
   root 'pages#index'
   resources :hostels do
-    resources :hostel_features, only: [:index, :create, :update, :destroy]
+    resources :hostel_features, only: [:index, :edit, :create, :update, :destroy]
   end
   devise_for :users, controllers: {
     sessions: 'users/sessions',

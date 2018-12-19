@@ -1,0 +1,7 @@
+function editHostelFeature(id, hostel_id) {
+  $.ajax({
+    url: `/hostels/${hostel_id}/hostel_features/${id}/edit`,
+    type: 'GET',
+    dataType: 'script'
+  });
+}

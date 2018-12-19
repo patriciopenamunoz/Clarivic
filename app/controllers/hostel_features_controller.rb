@@ -14,7 +14,21 @@ class HostelFeaturesController < ApplicationController
     end
   end
 
+  def edit
+    @hostel = Hostel.find(params[:hostel_id])
+    @hostel_feature = HostelFeature.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def update
+    @hostel_feature = HostelFeature.find(params[:id])
+    @hostel_feature.update(hostel_feature_params)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy

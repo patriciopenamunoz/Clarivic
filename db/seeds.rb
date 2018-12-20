@@ -11,6 +11,7 @@ puts 'Seed generation started:'
 puts '###############################'
 puts 'Cleaning registers'
 HostelRegistration.destroy_all
+HostelFeature.destroy_all
 Hostel.destroy_all
 Commune.destroy_all
 Region.destroy_all

@@ -32,6 +32,11 @@ class HostelFeaturesController < ApplicationController
   end
 
   def destroy
+    @hostel_feature = HostelFeature.find(params[:id])
+    @hostel_feature.destroy
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

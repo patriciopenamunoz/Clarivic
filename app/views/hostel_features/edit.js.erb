@@ -1,1 +1,2 @@
 $("#hostel-feature-modal .modal-body").html("<%= j render 'form' %>")
+$("#hostel-feature-modal .modal-body").append("<br><%= j link_to 'Eliminar característica', hostel_hostel_feature_path(@hostel_feature), method: :delete, class: 'btn btn-danger', remote: true %>")

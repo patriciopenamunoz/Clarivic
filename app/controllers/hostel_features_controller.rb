@@ -1,4 +1,6 @@
 class HostelFeaturesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @hostel_features = HostelFeature.where(hostel_id: params[:hostel_id]).order(id: :desc)
     @hostel = Hostel.find(params[:hostel_id])

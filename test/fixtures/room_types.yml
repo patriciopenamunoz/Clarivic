@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  number_rooms: 1
+  occupied_rooms: 1
+  value_by_night: 9.99
+  hostel: one
+
+two:
+  name: MyString
+  description: MyText
+  number_rooms: 1
+  occupied_rooms: 1
+  value_by_night: 9.99
+  hostel: two

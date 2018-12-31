@@ -4,6 +4,7 @@ class Hostel < ApplicationRecord
   has_many :hostel_registrations
   has_many :users, through: :hostel_registrations
   has_many :hostel_features
+  has_many :room_types
 
   has_one :region, through: :commune
   has_one_attached :principal_image

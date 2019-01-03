@@ -1,0 +1,21 @@
+<div class="container-fluid base">
+  <% if defined? title || defined? paragraph  %>
+  <div class="row">
+    <div class="col border-bottom header-base">
+      <div class="separator-1"></div>
+      <% if defined? title %>
+      <h1><%= title %></h1>
+      <div class="separator-2"></div>
+      <% end %>
+      <% if defined? paragraph %>
+      <p><%= simple_format(paragraph) %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="separator-2"></div>
+  <% end %>
+  <div class="row">
+    <%= yield %>
+  </div>
+  <div class="separator-3"></div>
+</div>

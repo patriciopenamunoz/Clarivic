@@ -1,30 +1,22 @@
-<div class="container-fluid base">
-  <div class="row">
-    <div class="col">
-      <h1>Administración de habitaciones</h1>
-      <p>
-        Los tipos de habitaciones son todas aquellas agrupaciones de
-        habitaciones que comparten ciertas caracteristicas que le dan un
-        valor diferenciado respecto a otras habitaciones del mismo hostal. <br>
-        Aquí podrá administrar los tipos de habitaciones existentes en
-        su recinto y definir el número de habitaciones que se correspondan
-        con dicho tipo.
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-3">
-                <div class="card">
-                  <div class="card-body text-center add-new">
-                    Agregar un nuevo tipo habitación <br>
-                    <i class="fas fa-plus-circle"></i>
-                  </div>
-                </div>
+<%= render 'layouts/container_base', title:'Administración de habitaciones',
+    paragraph:
+    "Los tipos de habitaciones son todas aquellas agrupaciones de "+
+    "habitaciones que comparten ciertas caracteristicas que le dan un "+
+    "valor diferenciado respecto a otras habitaciones del mismo hostal. "+
+    "Aquí podrá administrar los tipos de habitaciones existentes en "+
+    "su recinto y definir el número de habitaciones que se correspondan "+
+    "con dicho tipo." do %>
+
+<div class="col">
+  <div class="card">
+    <div class="card-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-3">
+            <div class="card">
+              <div class="card-body text-center add-new">
+                Agregar un nuevo tipo habitación <br>
+                <i class="fas fa-plus-circle"></i>
               </div>
             </div>
           </div>
@@ -32,5 +24,5 @@
       </div>
     </div>
   </div>
-  <div class="separator-3"></div>
 </div>
+<% end %>

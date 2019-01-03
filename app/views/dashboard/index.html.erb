@@ -1,20 +1,15 @@
-<div class="container-fluid">
-  <h1>Mi Dashboard</h1>
-  <div class="row">
-    <div class="col-6">
-      <h3>Mis reservaciones</h3>
-
-    </div>
-    <div class="col-6">
-      <h3>Mis hostales</h3>
-      <div class="card">
-        <div class="card-body">
-          <%= link_to "Registrar un hostal", new_hostel_path, class: "btn btn-primary btn-sm" %>
-        </div>
-      </div>
-      <div class="separator-2"></div>
-      <%= render partial: 'my_hostel', collection: @my_hostels %>
+<%= render 'layouts/container_base', title:'Mi Dashboard' do %>
+<div class="col-6">
+  <h3>Mis reservaciones</h3>
+</div>
+<div class="col-6">
+  <h3>Mis hostales</h3>
+  <div class="card">
+    <div class="card-body">
+      <%= link_to "Registrar un hostal", new_hostel_path, class: "btn btn-primary btn-sm" %>
     </div>
   </div>
+  <div class="separator-2"></div>
+  <%= render partial: 'my_hostel', collection: @my_hostels %>
 </div>
-<div class="separator-2"></div>
+<% end %>

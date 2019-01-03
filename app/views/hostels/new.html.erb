@@ -1,8 +1,8 @@
-<div class="container-fluid">
-  <h1>Registrar nuevo hostal</h1>
-  <p>Llene el siguiente formulario para registar su hostal.</p>
-  <%= render 'form', hostel: @hostel %>
-  <div class="separator-1"></div>
-  <%= link_to 'Volver', dashboard_index_path %>
-</div>
-<div class="separator-2"></div>
+<%= render 'layouts/container_base', title:'Registrar nuevo hostal',
+    paragraph:'Llene el siguiente formulario para registar su hostal.' do %>
+  <div class="col">
+    <%= render 'form', hostel: @hostel %>
+    <div class="separator-1"></div>
+    <%= link_to 'Volver', dashboard_index_path %>
+  </div>
+<% end %>

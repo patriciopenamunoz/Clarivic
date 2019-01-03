@@ -1,27 +1,24 @@
-<div class="container-fluid base">
-  <div class="row">
-    <div class="col-9 feature-list">
-      <div class="separator-1"></div>
-      <h1>Características del hostel</h1>
-      <div class="separator-1"></div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">
-            <h4>Añadir una nueva característica</h4>
-          </div>
-          <%= render 'form' %>
-        </div>
+<%= render 'layouts/container_base' do %>
+<div class="col-9 feature-list">
+  <div class="separator-1"></div>
+  <h1>Características del hostel</h1>
+  <div class="separator-1"></div>
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title">
+        <h4>Añadir una nueva característica</h4>
       </div>
-    </div>
-    <div class="col form-card">
-      <div class="separator-5"></div>
-      <h1>Listado</h1>
-      <div class="separator-1"></div>
-      <div class="features-list row">
-        <%= render partial:'hostel_feature', collection: @hostel_features %>
-      </div>
+      <%= render 'form' %>
     </div>
   </div>
-  <div class="separator-3"></div>
 </div>
+<div class="col form-card">
+  <div class="separator-5"></div>
+  <h1>Listado</h1>
+  <div class="separator-1"></div>
+  <div class="features-list row">
+    <%= render partial:'hostel_feature', collection: @hostel_features %>
+  </div>
+</div>
+<% end %>
 <%= render 'modal' %>

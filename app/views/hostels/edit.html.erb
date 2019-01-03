@@ -1,10 +1,8 @@
-<div class="container-fluid">
-  <h1>Modificar hostal</h1>
-  <p>Llene el siguiente formulario para modificar los datos del hostal.</p>
-
-  <%= render 'form', hostel: @hostel %>
-  <div class="separator-1"></div>
-  <%= link_to 'Show', @hostel %> |
-  <%= link_to 'Back', hostels_path %>
-</div>
-<div class="separator-2"></div>
+<%= render 'layouts/container_base', title:'Registrar nuevo hostal',
+    paragraph:'Llene el siguiente formulario para modificar los datos del hostal.' do %>
+  <div class="col">
+    <%= render 'form', hostel: @hostel %>
+    <div class="separator-1"></div>
+    <%= link_to 'Show', @hostel %> | <%= link_to 'Back', hostels_path %>
+  </div>
+<% end %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   resources :hostels do
     resources :hostel_features, only: [:index, :edit, :create, :update, :destroy]
+    resources :room_types, only: [:index, :edit, :create, :update, :destroy]
   end
   devise_for :users, controllers: {
     sessions: 'users/sessions',

@@ -36,6 +36,9 @@ gem 'mini_magick', '~> 4.8'
 # Use Faker
 gem 'faker'
 
+#use Font-Awesome
+gem 'fontawesome5-rails'
+
 # Use Devise
 gem 'devise'
 

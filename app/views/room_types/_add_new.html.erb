@@ -1,4 +1,6 @@
-<%= render 'card', new: true do %>
+<%= render 'card',
+    new:true, datatoggle:'modal', datatarget:'#room-type-add-modal',
+    onclick:"addRoomType(#{params[:hostel_id]})" do %>
   Agregar un nuevo tipo habitación <br>
   <i class="fas fa-plus-circle"></i>
 <% end %>

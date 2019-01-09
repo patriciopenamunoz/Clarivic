@@ -1,6 +1,10 @@
 <div class="col-3">
   <div class="card">
-    <div class="card-body text-center <%= 'add-new' if defined? new  %>">
+    <div
+      class="card-body text-center <%= 'add-new' if defined? new  %>"
+      onclick="<%= onclick if defined? onclick %>"
+      data-toggle="<%= datatoggle if defined? datatoggle %>"
+      data-target="<%= datatarget if defined? datatarget %>">
       <%= yield %>
     </div>
   </div>

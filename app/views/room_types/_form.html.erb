@@ -1,0 +1,37 @@
+<%= form_with model: [@hostel, @room_type], id:'room-type-form' do |form| %>
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class:'form-control' %>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <%= form.label :number_rooms %>
+      <%= form.number_field :number_rooms, class:'form-control' %>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <%= form.label :value_by_night %>
+      <%= form.number_field :value_by_night, class:'form-control' %>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="form-group">
+      <%= form.label :image %>
+      <%= form.file_field :image, class:'form-control-file' %>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description, class:'form-control' %>
+    </div>
+  </div>
+  <div class="col-12">
+    <%= form.submit class:'btn btn-primary' %>
+  </div>
+</div>
+<% end %>

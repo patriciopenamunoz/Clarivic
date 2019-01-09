@@ -7,15 +7,9 @@
     "su recinto y definir el número de habitaciones que se correspondan "+
     "con dicho tipo." do %>
 
-<div class="col">
-  <div class="card">
-    <div class="card-body">
-      <div class="container-fluid">
-        <div class="row">
-          <%= render 'add_new' %>
-        </div>
-      </div>
-    </div>
-  </div>
+<div id="room-type-list" class="col">
+  <%= render 'room_type_list' %>
 </div>
 <% end %>
+<%= render 'layouts/modal', id:'room-type-add-modal', title:'Añadir tipo de habitación' %>
+<%= render 'layouts/modal', id:'room-type-edit-modal', title:'Editar tipo de habitación' %>

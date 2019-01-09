@@ -1,0 +1,7 @@
+function addRoomType(hostel_id) {
+  $.ajax({
+    url: `/hostels/${hostel_id}/room_types/new`,
+    type: 'GET',
+    dataType: 'script'
+  });
+}

@@ -15,6 +15,7 @@ class RoomTypesController < ApplicationController
     params[:room_type][:hostel_id] = params[:hostel_id]
     @room_type = RoomType.create(room_type_params)
     respond_to do |format|
+      @room_types = RoomType.where(hostel_id: params[:hostel_id])
       format.js
     end
   end
@@ -24,6 +25,6 @@ class RoomTypesController < ApplicationController
   def room_type_params
     params.require(:room_type).permit(%i[name description number_rooms
                                          occupied_rooms value_by_night
-                                         hostel_id])
+                                         hostel_id image])
   end
 end

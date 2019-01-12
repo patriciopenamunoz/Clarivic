@@ -16,3 +16,26 @@
 .add-new:hover{
   background-color: #ec8683;
 }
+
+.card.room-type {
+  height: 150px;
+  margin-bottom: 10px;
+  .floating {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .degradation {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 80%);
+  }
+  .card-body {
+    position: relative;
+    overflow: hidden;
+    img.room-type {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

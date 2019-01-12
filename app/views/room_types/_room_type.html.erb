@@ -1,0 +1,7 @@
+<%= render 'card',
+    datatoggle:'modal', datatarget:'#room-type-add-modal',
+    onclick:"editRoomType(#{params[:hostel_id]})" do %>
+  <%= image_tag room_type.image, class:'floating room-type' %>
+  <div class="floating degradation"></div>
+  <%= room_type.name %>
+<% end %>

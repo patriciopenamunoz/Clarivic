@@ -24,7 +24,7 @@ class RoomTypesController < ApplicationController
 
   def room_type_params
     params.require(:room_type).permit(%i[name description number_rooms
-                                         occupied_rooms value_by_night
+                                         occupied_rooms value_per_night
                                          hostel_id image])
   end
 end

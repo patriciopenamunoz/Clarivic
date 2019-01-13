@@ -11,11 +11,28 @@ class RoomTypesController < ApplicationController
     end
   end
 
+  def edit
+    @hostel = Hostel.find(params[:hostel_id])
+    @room_type = RoomType.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     params[:room_type][:hostel_id] = params[:hostel_id]
     @room_type = RoomType.create(room_type_params)
     respond_to do |format|
       @room_types = RoomType.where(hostel_id: params[:hostel_id])
+      format.js
+    end
+  end
+
+  def update
+    @room_type = RoomType.find(params[:id])
+    @room_type.update(room_type_params)
+    respond_to do |format|
       format.js
     end
   end

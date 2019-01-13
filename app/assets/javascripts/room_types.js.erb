@@ -5,3 +5,10 @@ function addRoomType(hostel_id) {
     dataType: 'script'
   });
 }
+function editRoomType(hostel_id, id) {
+  $.ajax({
+    url: `/hostels/${hostel_id}/room_types/${id}/edit`,
+    type: 'GET',
+    dataType: 'script'
+  });
+}

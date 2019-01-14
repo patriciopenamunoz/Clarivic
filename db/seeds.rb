@@ -12,6 +12,7 @@ puts '###############################'
 puts 'Cleaning registers'
 HostelRegistration.destroy_all
 HostelFeature.destroy_all
+RoomType.destroy_all
 Hostel.destroy_all
 Commune.destroy_all
 Region.destroy_all
@@ -445,6 +446,45 @@ if Rails.env == 'development'
       registration.save
       registration.admin!
       puts "- Hostel registred by '#{user.email}'"
+      loop do
+        puts "- Adding features..."
+        puts '- Downloading image from https://loremflickr.com/1024/300/panorama'
+        file = open('https://loremflickr.com/1024/300/panorama')
+        puts '- DONE! Image downloaded'
+        hostel_feature = HostelFeature.new
+        hostel_feature.hostel = hostel
+        hostel_feature.title = Faker::FunnyName.name
+        hostel_feature.description = Faker::Hipster.paragraph
+        hostel_feature.save
+        hostel_feature.image.attach(
+          io: file,
+          filename: "hostel_feature_image_#{hostel_feature.id}.jpg",
+          content_type: 'image/jpg'
+        )
+        puts 'Hostel feature ADDED!'
+        break if [true, false].sample
+      end
+      loop do
+        puts "- Adding room types..."
+        puts '- Downloading image from https://loremflickr.com/800/600/room'
+        file = open('https://loremflickr.com/800/600/room')
+        puts '- DONE! Image downloaded'
+        room_type = RoomType.new
+        room_type.hostel = hostel
+        room_type.name = Faker::FunnyName.name
+        room_type.description = Faker::Hipster.paragraph
+        room_type.number_rooms = rand(20)
+        room_type.occupied_rooms = rand(room_type.number_rooms)
+        room_type.value_per_night = rand(400000)
+        room_type.save
+        room_type.image.attach(
+          io: file,
+          filename: "room_type_image_#{room_type.id}.jpg",
+          content_type: 'image/jpg'
+        )
+        puts 'Room type ADDED!'
+        break if [true, false].sample
+      end
     end
   end
   puts '###############################'

@@ -425,8 +425,8 @@ if Rails.env == 'development'
     # Define if the created user has hostels by a random boolean value.
     while [true, false].sample
       puts '- Adding a Hostel for this user...'
-      puts '- Downloading image from https://loremflickr.com/1280/960/hostel'
-      file = open('https://loremflickr.com/1280/960/hostel')
+      puts '- Downloading image from https://loremflickr.com/1280/960/house'
+      file = open('https://loremflickr.com/1280/960/house')
       puts '- DONE! Image downloaded'
       hostel = Hostel.new
       hostel.name = Faker::FunnyName.name
@@ -466,8 +466,8 @@ if Rails.env == 'development'
       end
       loop do
         puts "- Adding room types..."
-        puts '- Downloading image from https://loremflickr.com/800/600/room'
-        file = open('https://loremflickr.com/800/600/room')
+        puts '- Downloading image from https://loremflickr.com/800/600/bed'
+        file = open('https://loremflickr.com/800/600/bed')
         puts '- DONE! Image downloaded'
         room_type = RoomType.new
         room_type.hostel = hostel

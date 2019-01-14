@@ -10,6 +10,13 @@
                   <p class="card-text block-with-text hostel-description"><%= hostel.description %></p>
                   <%= link_to 'Ver más', hostel_path(hostel),
                                         class: 'btn btn-primary btn-sm' %>
+                  <span style="margin-left:10px; font-weight:bold; color:rgb(70, 70, 70);">
+                    Valor por noche desde:
+                    $<%= number_with_delimiter hostel.room_types
+                                                     .map { |e| e.value_per_night }
+                                                     .min.to_i,
+                                               delimiter: "." %>
+                  </span>
               </div>
           </div>
       </div>

@@ -1,24 +1,77 @@
-<p id="notice"><%= notice %></p>
+<%= render 'layouts/container_base', title:@hostel.name do %>
+  <div class="col-3 border-right">
+    <%= image_tag @hostel.principal_image, class:'img-thumbnail' %>
+    <div class="separator-1"></div>
+    <div class="card">
+      <div class="card-header">
+        Información
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <%= @hostel.description %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col">
+    <div id="carousel-features" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <% @hostel.hostel_features.each_with_index do |hostel_feature, index| %>
+        <div class="carousel-item <%= "#{"active" if index == 0}" %> ">
+          <%= image_tag hostel_feature.image.variant(resize: "1024x300!"), class:"d-block w-100" %>
+          <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.7)">
+            <h5><%= hostel_feature.title %></h5>
+            <p><%= hostel_feature.description %></p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <a class="carousel-control-prev" href="#carousel-features" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel-features" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <div class="separator-2"></div>
+    <div class="card">
+      <div class="card-header">
+        Habitaciones
+      </div>
+      <div class="card-body">
+        <div class="container-fluid">
+          <div class="row">
+            <% @hostel.room_types.each do |room_type| %>
+            <div class="col-3">
+              <div class="card">
+                <%= image_tag room_type.image, class:'card-img-top' %>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <h5><%= room_type.name %></h5>
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Precio por noche:
+                    $<%= number_with_delimiter room_type.value_per_night.to_i,
+                                                         delimiter: "." %>
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fas fa-bed"></i>
+                    Habitaciones disponibles:
+                    <%= (room_type.number_rooms - room_type.occupied_rooms) %>/
+                    <%= room_type.number_rooms %>
+                  </li>
 
-<p>
-  <strong>User:</strong>
-  <%= @hostel.user %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @hostel.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @hostel.address %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @hostel.description %>
-</p>
-
-<%= link_to 'Edit', edit_hostel_path(@hostel) %> |
-<%= link_to 'Back', hostels_path %>
+                </ul>
+              </div>
+              <div class="separator-1"></div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

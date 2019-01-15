@@ -44,6 +44,7 @@ class HostelsController < ApplicationController
   # POST /hostels.json
   def create
     @hostel = Hostel.new(hostel_params)
+    (@hostel.latitude, @hostel.longitude) = Geocoder.search(@hostel.address).first.coordinates
     @hostel.save
 
     @hostel_registration = HostelRegistration.new
@@ -66,6 +67,7 @@ class HostelsController < ApplicationController
   def update
     respond_to do |format|
       if @hostel.update(hostel_params)
+        (@hostel.latitude, @hostel.longitude) = Geocoder.search(@hostel.address).first.coordinates
         format.html { redirect_to dashboard_index_path, notice: 'Hostel was successfully updated.' }
         format.json { render :show, status: :ok, location: @hostel }
       else

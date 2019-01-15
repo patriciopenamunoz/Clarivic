@@ -1,4 +1,6 @@
 class RoomTypesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @room_types = RoomType.where(hostel_id: params[:hostel_id])
   end

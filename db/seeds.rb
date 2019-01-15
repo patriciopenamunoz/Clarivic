@@ -430,9 +430,18 @@ if Rails.env == 'development'
       puts '- DONE! Image downloaded'
       hostel = Hostel.new
       hostel.name = Faker::FunnyName.name
-      hostel.address = Faker::Address.street_address
       hostel.description = Faker::Hipster.paragraph
       hostel.commune = Commune.all.sample
+
+      basic_address = "Chile, #{hostel.commune.region.full_name}, #{hostel.commune.full_name}"
+      puts "- Searching coordinates for #{basic_address}"
+      cord = Geocoder.search(basic_address).first.coordinates
+      hostel.latitude  = rand((cord[0] - 0.01)..(cord[0] + 0.01))
+      hostel.longitude = rand((cord[1] - 0.01)..(cord[1] + 0.01))
+      puts "- Searching address for [#{hostel.latitude}, #{hostel.longitude}]"
+      address = Geocoder.search([hostel.latitude, hostel.longitude]).first
+      hostel.address = "#{address.street} #{address.house_number}"
+      puts "- Address saved: #{hostel.address}"
       hostel.save
       hostel.principal_image.attach(
         io: file,

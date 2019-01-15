@@ -39,6 +39,14 @@ class RoomTypesController < ApplicationController
     end
   end
 
+  def destroy
+    @room_type = RoomType.find(params[:id])
+    @room_type.destroy
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def room_type_params

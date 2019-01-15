@@ -1,1 +1,2 @@
 $("#room-type-edit-modal .modal-body").html("<%= j render 'form' %>");
+$("#room-type-edit-modal .modal-body").append("<br><%= j link_to 'Eliminar tipo de habitación', hostel_room_type_path(@room_type), method: :delete, class: 'btn btn-danger', remote: true %>")

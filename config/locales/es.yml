@@ -1,4 +1,7 @@
 es:
+  time:
+    formats:
+      long: "%d-%m-%Y %H:%M:%S"
   activerecord:
     models:
       user: 'Usuario'

@@ -15,5 +15,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require leaflet/dist/leaflet
 //= stub active_admin
 //= require_tree .

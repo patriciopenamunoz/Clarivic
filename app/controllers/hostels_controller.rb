@@ -5,17 +5,23 @@ class HostelsController < ApplicationController
   # GET /hostels
   # GET /hostels.json
   def index
-    @chile = { latitude: -31.7613365,
-               longitude: -71.3187697 }
-    if (params.has_key?(:region_id)) && (params[:region_id] != "-1")
-      if (params.has_key?(:commune_id)) && (params[:commune_id] != "-1")
-        @hostels = Commune.find(params[:commune_id]).hostels
+    @chile = { latitude: -31.7613365, longitude: -71.3187697 }
+    mode = params[:form_mode] || 'form'
+
+    if mode == 'form'
+      if (params.has_key?(:region_id)) && (params[:region_id] != "-1")
+        if (params.has_key?(:commune_id)) && (params[:commune_id] != "-1")
+          @hostels = Commune.find(params[:commune_id]).hostels
+        else
+          @hostels = Region.find(params[:region_id]).hostels
+        end
       else
-        @hostels = Region.find(params[:region_id]).hostels
+        @hostels = Hostel.all
       end
-    else
-      @hostels = Hostel.all
+    elsif mode == 'map'
+      @hostels = Hostel.where(id: params[:hostels_id])
     end
+
 
     @regions = Region.all
 

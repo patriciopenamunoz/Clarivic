@@ -16,13 +16,14 @@ document.addEventListener("turbolinks:load", function() {
         marker.hostel_id = hostel.id;
       });
     });
+    mymap.on('moveend', (e) => updateByMap(mymap));
   }
-  $('.hostel-filter-search.by-map').css('display','none');
+  $('#card-by-map').css('display','none');
 });
 
 document.addEventListener("turbolinks:before-cache", function() {
   mymap.remove();
-  $('.hostel-filter-search.by-form').css('display','flex');
+  $('#card-by-form').css('display','flex');
 });
 
 function changeCommunes(regions_select, communes_select) {
@@ -42,6 +43,12 @@ function changeCommunes(regions_select, communes_select) {
 }
 
 function fadeFormMap() {
+  if ($('#card-by-form').css('display') == 'none') {
+    Rails.fire(document.getElementById('form-by-form'), 'submit');
+  }
+  if ($('#card-by-map').css('display') == 'none') {
+    updateByMap(mymap);
+  }
   $('.hostel-filter-search').fadeToggle();
 }
 
@@ -74,7 +81,7 @@ function getMarkers(map) {
   return layers;
 }
 
-function getMarkersInsideBounds(map) {
+function getVisibleMarkers(map) {
   let layers = [];
   getMarkers(map).forEach((layer) => {
     if (map.getBounds().contains(layer.getLatLng())) {
@@ -82,4 +89,13 @@ function getMarkersInsideBounds(map) {
     }
   });
   return layers;
+}
+
+function updateByMap(map) {
+  $("#form-by-map input[name='hostels_id[]']").remove();
+  getVisibleMarkers(map).map((m) => m.hostel_id).forEach((id) => {
+    let tag = `<input type='hidden' name='hostels_id[]' value='${id}' />`;
+    $('#form-by-map').append(tag);
+  });
+  Rails.fire(document.getElementById('form-by-map'), 'submit');
 }

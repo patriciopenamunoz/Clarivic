@@ -5,9 +5,8 @@ class HostelsController < ApplicationController
   # GET /hostels
   # GET /hostels.json
   def index
-    coordinates = Geocoder.search('Chile').first.coordinates
-    @chile = { latitude: coordinates[0],
-               longitude: coordinates[1] }
+    @chile = { latitude: -31.7613365,
+               longitude: -71.3187697 }
     if (params.has_key?(:region_id)) && (params[:region_id] != "-1")
       if (params.has_key?(:commune_id)) && (params[:commune_id] != "-1")
         @hostels = Commune.find(params[:commune_id]).hostels

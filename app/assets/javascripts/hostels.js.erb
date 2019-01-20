@@ -40,7 +40,12 @@ document.addEventListener("turbolinks:load", function() {
       });
     });
   }
-  $('.hide-after-load').css('display','none');
+  $('.hostel-filter-search.by-map').css('display','none');
+});
+
+document.addEventListener("turbolinks:before-cache", function() {
+  $('#all-hostels-map, #hostel-map').html('');
+  $('.hostel-filter-search.by-form').css('display','flex');
 });
 
 function changeCommunes(regions_select, communes_select) {

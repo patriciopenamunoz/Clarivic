@@ -1,5 +1,5 @@
 <div class="col-4 border-left">
-  <div  class="card hostel-filter-search">
+  <div  class="card hostel-filter-search by-form">
     <div class="card-body">
       <h4 class="card-title">Filtros</h4>
       <%= form_with url: hostels_path, method: 'get' do |form| %>
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <div class="card hostel-filter-search hide-after-load">
+  <div class="card hostel-filter-search by-map">
     <div class="card-body">
       <div id="all-hostels-map"
            data-lat="<%= @chile[:latitude] %>"

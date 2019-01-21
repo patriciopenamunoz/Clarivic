@@ -17,6 +17,7 @@ Hostel.destroy_all
 Commune.destroy_all
 Region.destroy_all
 User.destroy_all
+AdminUser.destroy_all
 
 puts 'Creating admin user'
 admin = User.new

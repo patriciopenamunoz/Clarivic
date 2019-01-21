@@ -49,7 +49,7 @@ class HostelsController < ApplicationController
   # POST /hostels.json
   def create
     @hostel = Hostel.new(hostel_params)
-    (@hostel.latitude, @hostel.longitude) = Geocoder.search("Chile, #{@hostel.region.full_name}, #{@hostel.commune.full_name}, #{@hostel.address} #{@hostel.address_number}").first.coordinates
+    (@hostel.latitude, @hostel.longitude) = Geocoder.search(@hostel.full_address).first.coordinates
     @hostel.save
 
     @hostel_registration = HostelRegistration.new

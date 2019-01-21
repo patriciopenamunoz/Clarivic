@@ -17,6 +17,10 @@ class Hostel < ApplicationRecord
     end
   end
 
+  def full_address
+    "Chile, #{region.full_name}, #{commune.full_name}, #{address} #{address_number}"
+  end
+
   def value_per_night_from
     room_types.map { |e| e.value_per_night }.min.to_i
   end

@@ -1,6 +1,7 @@
 class HostelsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :set_hostel, only: [:show, :edit, :update, :destroy]
+  before_action :set_regions, only: [:index, :new, :edit]
 
   # GET /hostels
   # GET /hostels.json
@@ -22,9 +23,6 @@ class HostelsController < ApplicationController
       @hostels = Hostel.where(id: params[:hostels_id])
     end
 
-
-    @regions = Region.all
-
     respond_to do |format|
       format.html
       format.js
@@ -39,13 +37,11 @@ class HostelsController < ApplicationController
 
   # GET /hostels/new
   def new
-    @regions = Region.all
     @hostel = Hostel.new
   end
 
   # GET /hostels/1/edit
   def edit
-    @regions = Region.all
     @communes = @hostel.region.communes
   end
 
@@ -101,6 +97,10 @@ class HostelsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_hostel
       @hostel = Hostel.find(params[:id])
+    end
+
+    def set_regions
+      @regions = Region.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

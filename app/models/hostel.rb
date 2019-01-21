@@ -16,4 +16,8 @@ class Hostel < ApplicationRecord
       nil
     end
   end
+
+  def value_per_night_from
+    room_types.map { |e| e.value_per_night }.min.to_i
+  end
 end

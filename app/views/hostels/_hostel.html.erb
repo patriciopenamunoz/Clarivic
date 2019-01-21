@@ -12,10 +12,7 @@
                                         class: 'btn btn-primary btn-sm' %>
                   <span style="margin-left:10px; font-weight:bold; color:rgb(70, 70, 70);">
                     Valor por noche desde:
-                    $<%= number_with_delimiter hostel.room_types
-                                                     .map { |e| e.value_per_night }
-                                                     .min.to_i,
-                                               delimiter: "." %>
+                    $<%= number_with_delimiter hostel.value_per_night_from, delimiter: "." %>
                   </span>
               </div>
           </div>

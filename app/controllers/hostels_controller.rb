@@ -49,7 +49,7 @@ class HostelsController < ApplicationController
   # POST /hostels.json
   def create
     @hostel = Hostel.new(hostel_params)
-    (@hostel.latitude, @hostel.longitude) = Geocoder.search(@hostel.address).first.coordinates
+    (@hostel.latitude, @hostel.longitude) = Geocoder.search("Chile, #{@hostel.region.full_name}, #{@hostel.commune.full_name}, #{@hostel.address} #{@hostel.address_number}").first.coordinates
     @hostel.save
 
     @hostel_registration = HostelRegistration.new
@@ -105,6 +105,6 @@ class HostelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hostel_params
-      params.require(:hostel).permit(:user_id, :name, :address, :commune_id, :principal_image, :description)
+      params.require(:hostel).permit(:user_id, :name, :address, :address_number, :commune_id, :principal_image, :description)
     end
 end

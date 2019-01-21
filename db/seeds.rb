@@ -441,7 +441,8 @@ if Rails.env == 'development'
       hostel.longitude = rand((cord[1] - 0.01)..(cord[1] + 0.01))
       puts "- Searching address for [#{hostel.latitude}, #{hostel.longitude}]"
       address = Geocoder.search([hostel.latitude, hostel.longitude]).first
-      hostel.address = "#{address.street} #{address.house_number}"
+      hostel.address = address.street
+      hostel.address_number = address.house_number
       puts "- Address saved: #{hostel.address}"
       hostel.save
       hostel.principal_image.attach(

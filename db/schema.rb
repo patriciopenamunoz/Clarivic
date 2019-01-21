@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_21_013349) do
+ActiveRecord::Schema.define(version: 2019_01_21_184305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,17 @@ ActiveRecord::Schema.define(version: 2019_01_21_013349) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "hostel_registration_id"
+    t.date "starting_date"
+    t.date "ending_date"
+    t.integer "total"
+    t.boolean "payed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hostel_registration_id"], name: "index_reservations_on_hostel_registration_id"
+  end
+
   create_table "room_types", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -148,5 +159,6 @@ ActiveRecord::Schema.define(version: 2019_01_21_013349) do
   add_foreign_key "hostel_registrations", "hostels"
   add_foreign_key "hostel_registrations", "users"
   add_foreign_key "hostels", "communes"
+  add_foreign_key "reservations", "hostel_registrations"
   add_foreign_key "room_types", "hostels"
 end

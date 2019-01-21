@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hostel_registration: one
+  starting_date: 2019-01-21
+  ending_date: 2019-01-21
+  total: 1
+  payed: false
+
+two:
+  hostel_registration: two
+  starting_date: 2019-01-21
+  ending_date: 2019-01-21
+  total: 1
+  payed: false

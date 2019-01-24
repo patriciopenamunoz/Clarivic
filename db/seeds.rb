@@ -10,6 +10,8 @@ require 'open-uri'
 puts 'Seed generation started:'
 puts '###############################'
 puts 'Cleaning registers'
+ReservedRoom.destroy_all
+Reservation.destroy_all
 HostelRegistration.destroy_all
 HostelFeature.destroy_all
 RoomType.destroy_all
@@ -495,6 +497,42 @@ if Rails.env == 'development'
         )
         puts 'Room type ADDED!'
         break if [true, false].sample
+      end
+    end
+  end
+  puts '###############################'
+  puts 'Adding reservations:'
+  User.all.each_with_index do |user, i|
+    puts "- [#{(i + 1)}/#{User.count}] Selecting hostels for user"
+    hostels = (Hostel.all - user.hostel_registrations.map(&:hostel))
+    hostels = hostels.sample(rand(hostels.count))
+    hostels.each_with_index do |hostel, e|
+      puts " - [#{(e + 1)}/#{hostels.count}] Adding reservation"
+      puts ' - Adding user to the hostel registrtion as user'
+      hostel_registration = HostelRegistration.new
+      hostel_registration.user = user
+      hostel_registration.hostel = hostel
+      hostel_registration.save!
+      hostel_registration.user!
+      puts ' - Adding reservation'
+      year = Date.current.year
+      month = rand(1..12)
+      day = rand(1..Time.days_in_month(month, year))
+      reservation = Reservation.new
+      reservation.starting_date = Date.new(year, month, day)
+      reservation.ending_date = reservation.starting_date + rand(1..15)
+      reservation.payed = true
+      reservation.hostel_registration = hostel_registration
+      reservation.save!
+      puts '  - Reservation created, starting room reservations...'
+      room_types = hostel.room_types.sample(hostel.room_types.count)
+      room_types.each_with_index do |room_type, o|
+        puts "  - [#{(o + 1)}/#{room_types.count}] Adding room reservation"
+        reserved_room = ReservedRoom.new
+        reserved_room.quantity = 1
+        reserved_room.reservation = reservation
+        reserved_room.room_type = room_type
+        reserved_room.save!
       end
     end
   end

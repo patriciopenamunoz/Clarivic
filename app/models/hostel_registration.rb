@@ -3,5 +3,5 @@ class HostelRegistration < ApplicationRecord
   belongs_to :hostel
   has_many :reservations
 
-  enum role: %i[tenant ex-tenant admin]
+  enum role: %i[user admin]
 end

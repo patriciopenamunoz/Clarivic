@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui-package/jquery-ui
 //= require bootstrap.min
 //= require rails-ujs
 //= require activestorage

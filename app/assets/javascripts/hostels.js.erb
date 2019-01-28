@@ -1,5 +1,6 @@
 var mymap = null;
 document.addEventListener("turbolinks:load", function() {
+  changeCommunes(document.getElementById('region_id'), '#commune_id');
   if(document.getElementById("hostel-map")) {
     mymap = createMap("hostel-map");
     mymap = L.marker([

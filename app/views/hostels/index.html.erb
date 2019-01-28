@@ -1,9 +1,24 @@
 <%= render 'layouts/container_base', title:'Hostales' do %>
 <div class="col-7">
   <h3>Listado</h3>
+  <div class="card bg-primary text-white">
+    <div class="card-body">
+      Se muestran los hostales que posean habitaciones disponibles
+      entre <span id='starting-date'><%= session[:starting_date] %></span> y
+      <span id='ending-date'><%= session[:ending_date] %></span>.
+      Si quieres cambiar esto, haz
+      <a onclick="$('#reservation-modal').modal()" class="text-white">click aquí</a>.
+    </div>
+  </div>
+  <br>
   <div class="hostels-list">
     <%= render @hostels %>
   </div>
 </div>
 <%= render 'index_filter' %>
+<%= render 'layouts/modal', id:'reservation-modal', title:'Rango de reservación' do %>
+  <%= form_with url: hostels_path, method: 'get', html: { id: 'form-by-form' } do |form| %>
+    <%= render 'reservation_inputs', form:form, name:'form' %>
+  <% end %>
+<% end %>
 <% end %>

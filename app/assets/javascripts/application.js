@@ -19,3 +19,22 @@
 //= require leaflet/dist/leaflet
 //= stub active_admin
 //= require_tree .
+document.addEventListener('turbolinks:load',() => {
+  $('.based-datepicker').datepicker();
+  [].slice.call(document.getElementsByClassName('datepicker')).forEach((picker) => {
+    let based = [].slice
+                  .call(document.getElementsByClassName('based-datepicker'))
+                  .find((b) => b.dataset.based == picker.id);
+    if (based == undefined) {
+      $('.datepicker').datepicker({ minDate: new Date() });
+    }else{
+      $('.datepicker').datepicker({
+        minDate: new Date(),
+        onSelect: (dateText, inst) => {
+          $(based).datepicker("option", "minDate", picker.value);
+        }
+      });
+      $(based).datepicker("option", "minDate", picker.value);
+    }
+  });
+});

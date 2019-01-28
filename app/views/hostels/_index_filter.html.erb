@@ -4,7 +4,6 @@
       <h4 class="card-title">Filtros</h4>
       <%= form_with url: hostels_path, method: 'get', html: { id: 'form-by-form' } do |form| %>
         <%= form.hidden_field :form_mode, value: 'form' %>
-        <%= render 'reservation_inputs', form:form, name:'form' %>
         <div class="form-group">
           <%= form.label 'Región' %>
           <%= form.select :region_id,
@@ -28,13 +27,12 @@
   <div id="card-by-map" class="card hostel-filter-search">
     <div class="card-body">
       <%= form_with url: hostels_path, method: 'get', html: { id: 'form-by-map' } do |form| %>
-      <%= render 'reservation_inputs', form:form, name:'form' %>
       <%= form.hidden_field :form_mode, value: 'map' %>
       <div id="all-hostels-map"
            data-lat="<%= @chile[:latitude] %>"
            data-long="<%= @chile[:longitude] %>"
            data-zoom="3"
-           style="height:250px; width:100%;">
+           style="height:300px; width:100%;">
       </div>
       <% end %>
       <br>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'pages/index'
+  post 'reservations/set_dates_and_redirect'
   get 'dashboard/index'
   root 'pages#index'
   resources :hostels do

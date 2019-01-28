@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="display-4">Busca tu hostal ideal, al mejor precio</h1>
     <p class="lead">Busca entre cientos de hostales y encuentra el que mejor se adapte a tus necesidades.</p>
-    <%= form_with url:hostels_path, method:'get', local:true, html:{id:'principal-form', class:'form-inline'} do |form| %>
+    <%= form_with url:reservations_set_dates_and_redirect_path, local:true, html:{id:'principal-form', class:'form-inline'} do |form| %>
       <div class="form-group">
         <%= form.select :region_id,
           ([['Cualquier región', -1]] + @regions.pluck(:short_name, :id)), {},

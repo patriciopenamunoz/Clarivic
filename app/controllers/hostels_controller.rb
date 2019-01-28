@@ -7,8 +7,6 @@ class HostelsController < ApplicationController
   # GET /hostels.json
   def index
     @chile = { latitude: -31.7613365, longitude: -71.3187697 }
-    @starting_date = params[:starting_date]
-    @ending_date = params[:ending_date]
     @region_id = params.has_key?(:region_id) ? params[:region_id] : '-1'
     mode = params[:form_mode] || 'form'
 

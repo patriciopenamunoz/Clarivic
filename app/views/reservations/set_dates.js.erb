@@ -1,0 +1,8 @@
+if ($('#card-by-form').css('display') == 'none') {
+  Rails.fire(document.getElementById('form-by-map'), 'submit');
+} else {
+  Rails.fire(document.getElementById('form-by-form'), 'submit')
+}
+$('#starting-date').html('<%= session[:starting_date] %>');
+$('#ending-date').html('<%= session[:ending_date] %>');
+$('#reservation-modal').modal('toggle');;

@@ -17,7 +17,7 @@
 </div>
 <%= render 'index_filter' %>
 <%= render 'layouts/modal', id:'reservation-modal', title:'Rango de reservación' do %>
-  <%= form_with url: hostels_path, method: 'get', html: { id: 'form-by-form' } do |form| %>
+  <%= form_with url: reservations_set_dates_path do |form| %>
     <%= render 'reservation_inputs', form:form, name:'form' %>
   <% end %>
 <% end %>

@@ -17,4 +17,8 @@ class RoomType < ApplicationRecord
     end
     rooms_stack.max
   end
+
+  def rooms_left(date: Date.current)
+    number_rooms - occupied_rooms(date:date)
+  end
 end

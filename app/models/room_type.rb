@@ -21,4 +21,8 @@ class RoomType < ApplicationRecord
   def rooms_left(date: Date.current)
     number_rooms - occupied_rooms(date:date)
   end
+
+  def rooms_left_in_range(starting_date: Date.current, ending_date: Date.current + 1)
+    number_rooms - occupied_rooms_in_range(starting_date:starting_date, ending_date:ending_date)
+  end
 end

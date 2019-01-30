@@ -1,4 +1,5 @@
 class HostelsController < ApplicationController
+  include ApplicationHelper
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :set_hostel, only: [:show, :edit, :update, :destroy]
   before_action :set_regions, only: [:index, :new, :edit]
@@ -25,8 +26,8 @@ class HostelsController < ApplicationController
     end
 
     @hostels = @hostels.map do |h|
-      if (h.rooms_left_in_range starting_date: Date.parse(session[:starting_date]),
-                                ending_date: Date.parse(session[:ending_date])).positive?
+      if (h.rooms_left_in_range starting_date: tDate(session[:starting_date]),
+                                ending_date: tDate(session[:ending_date])).positive?
         return h
       end
     end

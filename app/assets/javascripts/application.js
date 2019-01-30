@@ -20,16 +20,17 @@
 //= stub active_admin
 //= require_tree .
 document.addEventListener('turbolinks:load',() => {
-  $('.based-datepicker').datepicker();
+  $('.based-datepicker').datepicker( {dateFormat: 'dd/mm/yy'} );
   [].slice.call(document.getElementsByClassName('datepicker')).forEach((picker) => {
     let based = [].slice
                   .call(document.getElementsByClassName('based-datepicker'))
                   .find((b) => b.dataset.based == picker.id);
     if (based == undefined) {
-      $('.datepicker').datepicker({ minDate: new Date() });
+      $('.datepicker').datepicker({ minDate: new Date(), dateFormat: 'dd/mm/yy' });
     }else{
       $('.datepicker').datepicker({
         minDate: new Date(),
+        dateFormat: 'dd/mm/yy',
         onSelect: (dateText, inst) => {
           $(based).datepicker("option", "minDate", picker.value);
         }

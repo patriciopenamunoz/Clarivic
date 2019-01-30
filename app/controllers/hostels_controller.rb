@@ -24,6 +24,13 @@ class HostelsController < ApplicationController
       @hostels = Hostel.where(id: params[:hostels_id])
     end
 
+    @hostels = @hostels.map do |h|
+      if (h.rooms_left_in_range starting_date: Date.parse(session[:starting_date]),
+                                ending_date: Date.parse(session[:ending_date])).positive?
+        return h
+      end
+    end
+
     respond_to do |format|
       format.html
       format.js

@@ -24,4 +24,9 @@ class Hostel < ApplicationRecord
   def value_per_night_from
     room_types.map { |e| e.value_per_night }.min.to_i
   end
+
+  def rooms_left_in_range(starting_date: Date.current, ending_date: Date.current + 1)
+    room_types.map { |r| r.rooms_left_in_range(starting_date:starting_date, ending_date:ending_date) }.sum
+  end
+
 end

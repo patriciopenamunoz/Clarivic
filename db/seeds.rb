@@ -487,7 +487,6 @@ if Rails.env == 'development'
         room_type.name = Faker::FunnyName.name
         room_type.description = Faker::Hipster.paragraph
         room_type.number_rooms = rand(20)
-        room_type.occupied_rooms = rand(room_type.number_rooms)
         room_type.value_per_night = rand(400000)
         room_type.save
         room_type.image.attach(

@@ -1,0 +1,24 @@
+<div class="col-3">
+  <div class="card">
+    <%= image_tag room_type.image, class:'card-img-top' %>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <h5><%= room_type.name %></h5>
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-money-bill-wave"></i>
+        Precio por noche:
+        $<%= number_with_delimiter room_type.value_per_night.to_i,
+                                             delimiter: "." %>
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-bed"></i>
+        Habitaciones disponibles:
+        <%= room_type.rooms_left_in_range(starting_date: tDate(session[:starting_date]), ending_date: tDate(session[:ending_date])) %> /
+        <%= room_type.number_rooms %>
+      </li>
+
+    </ul>
+  </div>
+  <div class="separator-1"></div>
+</div>

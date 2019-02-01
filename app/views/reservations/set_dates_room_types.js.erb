@@ -1,0 +1,7 @@
+if ($('#room-type-list').length) {
+  $('#room-type-list').html("<%= j render partial: 'hostels/room_type', collection: @room_types %>");
+}
+
+$('#starting-date').html('<%= session[:starting_date] %>');
+$('#ending-date').html('<%= session[:ending_date] %>');
+$('#reservation-modal').modal('toggle');;

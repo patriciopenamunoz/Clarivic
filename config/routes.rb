@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   get 'pages/index'
   post 'reservations/set_dates_and_redirect'
+  post 'reservations/set_dates_room_types'
   post 'reservations/set_dates'
   get 'dashboard/index'
   root 'pages#index'

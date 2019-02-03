@@ -17,7 +17,13 @@
         <%= room_type.rooms_left_in_range(starting_date: tDate(session[:starting_date]), ending_date: tDate(session[:ending_date])) %> /
         <%= room_type.number_rooms %>
       </li>
-
+      <% if user_signed_in? %>
+      <li class="list-group-item">
+        <%= link_to 'Reservar',
+                     hostel_room_type_reservations_create_path(@hostel, room_type),
+                     method: :post, class: 'btn btn-primary' %>
+      </li>
+      <% end %>
     </ul>
   </div>
   <div class="separator-1"></div>

@@ -1,0 +1,33 @@
+<div class="card">
+      <div class="row no-gutters">
+          <div class="col-auto">
+            <%= image_tag reserved_room.room_type.image.variant(resize: "200x150!") %>
+          </div>
+          <div class="col">
+              <div class="card-block px-2">
+                  <div class="separator-1"></div>
+                  <h4 class="card-title"><%= reserved_room.room_type.name %></h4>
+                  <div class="">
+                    <i class="fas fa-bed"></i>
+                    Habitaciones:
+                    <%= reserved_room.quantity %>
+                    <i>(de
+                       <%= reserved_room.room_type.rooms_left_in_range(reserved_room.reservation.date_hash)%>
+                       habitaciones restantes)</i>
+                  </div>
+                  <div class="">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Valor: <%= toCLP (reserved_room.room_type.value_per_night * reserved_room.reservation.days) %>
+                    <i>(Por noche:
+                    <%= toCLP reserved_room.room_type.value_per_night %>)</i>
+                  </div>
+                  <div class="">
+                    <i class="fas fa-calculator"></i>
+                    Subtotal: <%= toCLP reserved_room.total * reserved_room.reservation.days %>
+                    <i>(Por noche: <%= toCLP reserved_room.total %>)</i>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>
+<div class="separator-2"></div>

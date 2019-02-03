@@ -1,0 +1,23 @@
+<%= render 'layouts/container_base', title:'Reservaciones pendientes' do %>
+  <% @reservations.each do |reservation| %>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title"><%= reservation.hostel.name %></h3>
+        <h6>
+          <i class="far fa-calendar-alt"></i>
+          <%= "#{reservation.starting_date} - #{reservation.ending_date} (#{reservation.days} días)" %>
+        </h6>
+        <h5>Habitaciones</h5>
+        <%= render partial: 'reserved_room', collection: reservation.reserved_rooms %>
+        <span style="font-weight:bold; margin-right:10px;">
+          TOTAL: <%= toCLP (reservation.actual_total * reservation.days) %>
+          <i>(Por noche: <%= toCLP (reservation.actual_total) %>)</i>
+        </span>
+        <%= link_to 'Pagar', '#', class:'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+  <div class="separator-2"></div>
+  <% end %>
+<% end %>

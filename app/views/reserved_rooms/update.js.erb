@@ -1,0 +1,1 @@
+$("#reservation-<%= @reservation.id %>")[0].outerHTML = "<%= j render partial: 'reservations/reservation', locals:{reservation: @reservation} %>";

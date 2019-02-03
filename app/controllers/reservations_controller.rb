@@ -32,13 +32,14 @@ class ReservationsController < ApplicationController
       @reserved_room.room_type_id = params[:room_type_id]
       @reserved_room.quantity = 1
     else
-      @reserved_room.quantity += 1
+      unless @reserved_room.room_type.rooms_left_in_range(@reserved_room.reservation.date_hash).zero?
+        @reserved_room.quantity += 1
+      end
     end
     @reserved_room.save!
 
     redirect_to reservations_path
   end
-
 
 #-------------------------------------------------------------------------------
 

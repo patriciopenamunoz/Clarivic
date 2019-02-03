@@ -7,12 +7,14 @@ Rails.application.routes.draw do
   post 'reservations/set_dates'
   get 'dashboard/index'
   root 'pages#index'
-  resources :reservations, only: [:index]
+  resources :reservations, only: [:index, :destroy]
+  resources :reserved_rooms, only: [:update, :destroy] do
+    resources :reservations, only: [:update]
+  end
   resources :hostels do
     resources :hostel_features, only: [:index, :edit, :create, :update, :destroy]
     resources :room_types, only: [:index, :new, :edit, :create, :update, :destroy] do
       post 'reservations/create'
-      resources :reservations, only: [:update, :destroy]
     end
   end
   devise_for :users, controllers: {

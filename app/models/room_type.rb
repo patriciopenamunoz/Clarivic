@@ -5,7 +5,7 @@ class RoomType < ApplicationRecord
   has_one_attached :image
 
   def occupied_rooms(date: Date.current)
-    reserved_rooms.map { |r| r.reservation.in_date?(date: date) ? r.quantity : 0 }.sum
+    reserved_rooms.map { |r| r.reservation.in_date?(date: date) ? (r.reservation.payed ? r.quantity : 0) : 0 }.sum
   end
 
   def occupied_rooms_in_range(starting_date: Date.current, ending_date: Date.current + 1)

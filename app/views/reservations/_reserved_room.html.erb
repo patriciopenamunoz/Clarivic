@@ -10,10 +10,15 @@
                   <div class="">
                     <i class="fas fa-bed"></i>
                     Habitaciones:
-                    <%= reserved_room.quantity %>
-                    <i>(de
-                       <%= reserved_room.room_type.rooms_left_in_range(reserved_room.reservation.date_hash)%>
-                       habitaciones restantes)</i>
+                    <%= form_with(model: reserved_room,
+                                  method: :put, html:{style:'display:inline-block'}) do |form| %>
+                      <%= form.number_field :quantity,
+                          value: reserved_room.quantity,
+                          style:'width:50px;', oninput:"validity.valid||(value=1)",
+                          min:1, max:reserved_room.room_type.rooms_left_in_range(reserved_room.reservation.date_hash),
+                          onchange:"Rails.fire(this.form, 'submit');" %>
+                    <% end %>
+                    <i>(de <%= reserved_room.room_type.rooms_left_in_range(reserved_room.reservation.date_hash)%> habitacion/es disponibles)</i>
                   </div>
                   <div class="">
                     <i class="fas fa-money-bill-wave"></i>
@@ -26,6 +31,12 @@
                     Subtotal: <%= toCLP reserved_room.total * reserved_room.reservation.days %>
                     <i>(Por noche: <%= toCLP reserved_room.total %>)</i>
                   </div>
+                  <div class="separator-1"></div>
+                  <%= link_to reserved_room_path(reserved_room),
+                              method: :delete, class:'btn btn-primary',
+                              style:'position: absolute; right: 15px; top: 15px;' do %>
+                    <i class="fas fa-trash-alt"></i> Quitar
+                  <% end %>
               </div>
           </div>
       </div>

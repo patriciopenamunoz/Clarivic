@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'dashboard/index'
   root 'pages#index'
   get 'reservations/:id/pre_pay', to: 'reservations#pre_pay', as: 'reservation_pre_pay'
+  get 'reservations/:id/execute', to: 'reservations#execute', as: 'reservation_execute'
   resources :reservations, only: [:index, :destroy]
   resources :reserved_rooms, only: [:update, :destroy] do
     resources :reservations, only: [:update]

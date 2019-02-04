@@ -76,6 +76,16 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def execute
+    paypal_payment = PayPal::SDK::REST::Payment.find(params[:paymentId])
+    if paypal_payment.execute(payer_id: params[:PayerID])
+      @reservation = Reservation.find(params[:id])
+      @reservation.update(payed: true)
+      redirect_to dashboard_index_path, notice: "Su reservación ha sido registrada ¡Muchas gracias!"
+    else
+      redirect_to reservations_path, notice: "No se pudo generar el cobro en PayPal."
+    end
+  end
 #-------------------------------------------------------------------------------
 
   def set_dates

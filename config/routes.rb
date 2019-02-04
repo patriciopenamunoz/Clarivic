@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'reservations/set_dates'
   get 'dashboard/index'
   root 'pages#index'
+  get 'reservations/:id/pre_pay', to: 'reservations#pre_pay', as: 'reservation_pre_pay'
   resources :reservations, only: [:index, :destroy]
   resources :reserved_rooms, only: [:update, :destroy] do
     resources :reservations, only: [:update]

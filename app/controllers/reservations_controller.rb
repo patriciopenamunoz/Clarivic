@@ -42,6 +42,41 @@ class ReservationsController < ApplicationController
   end
 
 #-------------------------------------------------------------------------------
+  def pre_pay
+    @reservation = Reservation.find(params[:id])
+    items = @reservation.reserved_rooms.map do |reserved_room|
+      {
+        name: "Arriendo habitación #{reserved_room.room_type.name}",
+        sku: reserved_room.room_type.id.to_s,
+        price: ((reserved_room.room_type.value_per_night) / 700).round(2).to_s,
+        currency: 'USD',
+        quantity: reserved_room.quantity
+      }
+    end
+    payment = PayPal::SDK::REST::Payment.new({
+      intent: 'sale',
+      payer: { payment_method: 'paypal' },
+      redirect_urls: {
+        return_url: reservation_execute_url(@reservation),
+        cancel_url: root_url
+      },
+      transactions: {
+        item_list: { items: items },
+        amount: {
+          total: items.map { |i| i[:price].to_f * i[:quantity] }.sum.round(2).to_s,
+          currency: 'USD'
+        },
+        description: 'Arriendo de hostales - Clarivic'
+      }
+    })
+    if payment.create
+      redirect_to payment.links.find { |v| v.method == 'REDIRECT' }.href
+    else
+      render json: payment.error
+    end
+  end
+
+#-------------------------------------------------------------------------------
 
   def set_dates
     respond_to do |format|

@@ -12,7 +12,7 @@
         TOTAL: <%= toCLP (reservation.actual_total * reservation.days) %>
         <i>(Por noche: <%= toCLP (reservation.actual_total) %>)</i>
       </span>
-      <%= link_to 'Pagar', '#', class:'btn btn-primary' %>
+      <%= link_to 'Pagar', reservation_pre_pay_path(reservation), class:'btn btn-primary' %>
     </div>
   </div>
 </div>

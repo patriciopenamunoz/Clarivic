@@ -1,7 +1,7 @@
 <div class="col-12" id="reservation-<%= reservation.id %>">
   <div class="card">
     <div class="card-body">
-      <h3 class="card-title"><%= reservation.hostel.name %></h3>
+      <h3 class="card-title"><%= link_to reservation.hostel.name, hostel_path(reservation.hostel) %></h3>
       <h6>
         <i class="far fa-calendar-alt"></i>
         <%= "#{reservation.starting_date} - #{reservation.ending_date} (#{reservation.days} días)" %>

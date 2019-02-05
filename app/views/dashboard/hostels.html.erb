@@ -1,0 +1,13 @@
+<%= render 'layouts/container_base', title:'Mis hostales registrados' do %>
+<div class="col">
+  <div class="card">
+    <div class="card-body">
+      <%= link_to new_hostel_path, class: "btn btn-primary btn-sm" do %>
+        <i class="fas fa-plus"></i> Registrar un hostal
+      <% end %>
+    </div>
+  </div>
+  <div class="separator-2"></div>
+  <%= render partial: 'my_hostel', collection: @my_hostels %>
+</div>
+<% end %>

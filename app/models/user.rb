@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :hostel_registrations
   has_many :hostels, through: :hostel_registrations
+  has_many :reservations, through: :hostel_registrations
 
   enum gender: %i[male female other]
   enum access_level: %i[user admin]

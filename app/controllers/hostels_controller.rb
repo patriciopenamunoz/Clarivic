@@ -68,7 +68,7 @@ class HostelsController < ApplicationController
     @hostel_registration.admin!
     respond_to do |format|
       if @hostel_registration.save
-        format.html { redirect_to dashboard_index_path, notice: 'Hostal registrado correctamente.' }
+        format.html { redirect_to dashboard_hostels_path, notice: 'Hostal registrado correctamente.' }
         format.json { render :show, status: :created, location: @hostel }
       else
         format.html { render :new }
@@ -83,7 +83,7 @@ class HostelsController < ApplicationController
     respond_to do |format|
       if @hostel.update(hostel_params)
         (@hostel.latitude, @hostel.longitude) = Geocoder.search(@hostel.address).first.coordinates
-        format.html { redirect_to dashboard_index_path, notice: 'Hostel was successfully updated.' }
+        format.html { redirect_to dashboard_hostels_path, notice: 'Hostel was successfully updated.' }
         format.json { render :show, status: :ok, location: @hostel }
       else
         format.html { render :edit }
@@ -98,7 +98,7 @@ class HostelsController < ApplicationController
     @hostel.hostel_registrations.destroy_all
     @hostel.destroy
     respond_to do |format|
-      format.html { redirect_to dashboard_index_path, notice: 'Hostel was successfully destroyed.' }
+      format.html { redirect_to dashboard_hostels_path, notice: 'Hostel was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

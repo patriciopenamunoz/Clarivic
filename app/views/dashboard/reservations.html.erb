@@ -6,14 +6,16 @@
       <h3>Reservaciones activas</h3>
       <%= render partial: 'my_reservation',
                  collection: @in_date,
-                 as: 'my_reservation' %>
+                 as: 'my_reservation',
+                 locals:{type:'in_date'} %>
     </div>
     <div class="col border-left">
       <div class="separator-1"></div>
       <h3>Reservaciones futuras</h3>
       <%= render partial: 'my_reservation',
                  collection: @future,
-                 as: 'my_reservation' %>
+                 as: 'my_reservation',
+                 locals:{type:'future'} %>
     </div>
   </div>
   <div class="separator-1"></div>
@@ -22,7 +24,8 @@
       <h3>Historial</h3>
       <%= render partial: 'my_reservation',
                  collection: @history,
-                 as: 'my_reservation' %>
+                 as: 'my_reservation',
+                 locals:{type:'history'} %>
     </div>
   </div>
 </div>

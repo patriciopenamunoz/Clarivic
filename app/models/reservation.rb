@@ -10,8 +10,24 @@ class Reservation < ApplicationRecord
     total_counter
   end
 
+  def f_starting_date
+    starting_date.strftime('%d/%m/%Y')
+  end
+
+  def f_ending_date
+    ending_date.strftime('%d/%m/%Y')
+  end
+
   def days
     (ending_date - starting_date).to_i
+  end
+
+  def days_left
+    (ending_date - Date.current).to_i
+  end
+
+  def days_remaining
+    (starting_date - Date.current).to_i
   end
 
   def date_hash

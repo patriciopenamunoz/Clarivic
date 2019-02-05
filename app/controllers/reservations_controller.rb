@@ -100,7 +100,8 @@ class ReservationsController < ApplicationController
   end
 
   def set_dates_room_types
-    @room_types = Hostel.find(params[:hostel_id]).room_types
+    @hostel = Hostel.find(params[:hostel_id])
+    @room_types = @hostel.room_types
   end
 
   private

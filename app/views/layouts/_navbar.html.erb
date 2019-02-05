@@ -7,7 +7,9 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to 'Página inicial', root_path, class:'nav-link' %>
+        <%= link_to root_path, class:'nav-link' do %>
+          <i class="fas fa-home"></i> Página inicial
+        <% end %>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -31,7 +33,9 @@
         </li>
       <% end %>
       <li class="nav-item">
-        <%= link_to 'Reservaciones pendientes', reservations_path, class:'nav-link' %>
+        <%= link_to reservations_path, class:'nav-link' do %>
+          <i class="fas fa-shopping-cart"></i> Reservaciones pendientes
+        <% end %>
       </li>
     </ul>
   </div>

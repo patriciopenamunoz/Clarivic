@@ -9,6 +9,8 @@
       <li class="nav-item">
         <%= link_to 'Página inicial', root_path, class:'nav-link' %>
       </li>
+    </ul>
+    <ul class="navbar-nav">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -28,10 +30,9 @@
           <%= link_to 'Registrarse', new_user_registration_path, class:'nav-link' %>
         </li>
       <% end %>
+      <li class="nav-item">
+        <%= link_to 'Reservaciones pendientes', reservations_path, class:'nav-link' %>
+      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Búscar</button>
-    </form>
   </div>
 </nav>

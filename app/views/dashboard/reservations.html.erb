@@ -1,5 +1,29 @@
-<%= render 'layouts/container_base', title:'Mis reservations' do %>
-<div class="col">
-  <%= render partial: 'my_reservation', collection: @my_reservations %>
+<%= render 'layouts/container_base', title:'Mis reservaciones' do %>
+<div class="container-fluid">
+  <div class="row border-top border-bottom">
+    <div class="col">
+      <div class="separator-1"></div>
+      <h3>Reservaciones activas</h3>
+      <%= render partial: 'my_reservation',
+                 collection: @in_date,
+                 as: 'my_reservation' %>
+    </div>
+    <div class="col border-left">
+      <div class="separator-1"></div>
+      <h3>Reservaciones futuras</h3>
+      <%= render partial: 'my_reservation',
+                 collection: @future,
+                 as: 'my_reservation' %>
+    </div>
+  </div>
+  <div class="separator-1"></div>
+  <div class="row">
+    <div class="col">
+      <h3>Historial</h3>
+      <%= render partial: 'my_reservation',
+                 collection: @history,
+                 as: 'my_reservation' %>
+    </div>
+  </div>
 </div>
 <% end %>

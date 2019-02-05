@@ -3,7 +3,9 @@ class DashboardController < ApplicationController
 
   def reservations
     @my_reservations = current_user.reservations.where(payed: true)
-    @my_reservations.select { |r| !r.expired? }
+    @in_date = @my_reservations.select(&:in_date?)
+    @future = @my_reservations.reject(&:started?)
+    @history = @my_reservations.select(&:expired?)
   end
 
   def hostels

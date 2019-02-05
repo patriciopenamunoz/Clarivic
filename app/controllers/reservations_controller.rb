@@ -81,7 +81,7 @@ class ReservationsController < ApplicationController
     if paypal_payment.execute(payer_id: params[:PayerID])
       @reservation = Reservation.find(params[:id])
       @reservation.update(payed: true)
-      redirect_to dashboard_index_path, notice: "Su reservación ha sido registrada ¡Muchas gracias!"
+      redirect_to dashboard_reservations_path, notice: "Su reservación ha sido registrada ¡Muchas gracias!"
     else
       redirect_to reservations_path, notice: "No se pudo generar el cobro en PayPal."
     end

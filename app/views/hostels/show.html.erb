@@ -17,6 +17,11 @@
         <div id="hostel-map" data-lat="<%= @hostel.latitude %>" data-long="<%= @hostel.longitude %>" style="height:300px; width:100%;"></div>
       </div>
     </div>
+    <div class="card">
+      <div class="card-body">
+        <i class="fas fa-map-marker-alt"></i> <%= @hostel.full_address %>
+      </div>
+    </div>
   </div>
   <div class="col">
     <div id="carousel-features" class="carousel slide" data-ride="carousel">
@@ -61,6 +66,49 @@
             <%= render partial: 'hostels/room_type', collection: @room_types %>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        Comentarios
+      </div>
+      <div class="card-body">
+        <% if @can_comment %>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> Añadir comentario: </h5>
+            <%= form_with url: hostel_comments_path(@hostel), method: :post do |form| %>
+              <%= form.text_area :message, class: 'form-control', required: true %>
+              <div class="separator-1"></div>
+              <%= form.submit 'Enviar comentario', class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+        <div class="separator-2"></div>
+        <% @hostel.comments.order('created_at DESC').each do |comment| %>
+        <div class="card">
+          <div class="card-body">
+            <div class="toast" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <strong class="mr-auto">
+                  <%= comment.user.full_name %>
+                </strong>
+                <small><%= comment.created_at.strftime('%d/%m/%Y %H:%M:%S') %></small>
+              </div>
+              <div class="toast-body">
+                <div class="separator-1"></div>
+                <%= comment.message %>
+                <div class="separator-1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="separator-1"></div>
+        <% end %>
+        <div class="separator-4"></div>
       </div>
     </div>
   </div>

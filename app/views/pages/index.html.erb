@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid principal">
+<div class="jumbotron jumbotron-fluid principal" style="margin-bottom:0">
   <div class="container">
     <h1 class="display-4">Busca tu hostal ideal, al mejor precio</h1>
     <p class="lead">Busca entre cientos de hostales y encuentra el que mejor se adapte a tus necesidades.</p>
@@ -36,29 +36,32 @@
   </div>
 </div>
 <div class="container-fluid">
+  <div class="separator-2"></div>
   <div class="row">
     <div class="col">
-      <h1>Últimos hostales públicados</h1>
+      <h1>¿Qué es clarivic?</h1>
     </div>
   </div>
-  <div class="row">
-    <% @hostels.each do |hostel| %>
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="card showcase">
-          <%= image_tag hostel.principal_image.variant(resize: "400x300!"),
-          class: 'card-img-top' %>
-          <div class="card-body">
-            <h4><%= hostel.name %></h4>
-            <h6><%= "#{hostel.commune.short_name}, #{hostel.region.short_name}" %></h6>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <div class="separator-3"></div>
   <div class="row">
     <div class="col">
-      <%= link_to 'Ver más hostales', hostels_path %>
+      <p class="text-center">
+        <i class="fas fa-hotel" style="font-size:100px"></i><br><br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
+    <div class="col">
+      <p class="text-center">
+        <i class="fas fa-map-marked-alt" style="font-size:100px"></i><br><br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
+    <div class="col">
+      <p class="text-center">
+        <i class="fab fa-cc-paypal" style="font-size:100px"></i><br><br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
     </div>
   </div>
+  <div class="separator-2"></div>
 </div>
-<div class="separator-2"></div>

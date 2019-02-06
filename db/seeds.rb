@@ -513,6 +513,11 @@ Commune.create(full_name: "Peñaflor", short_name: "Peñaflor", region: Metropol
       hostel_registration.hostel = hostel
       hostel_registration.save!
       hostel_registration.user!
+      puts ' - Adding comment'
+      comment = Comment.new
+      comment.hostel_registration = hostel_registration
+      comment.message = Faker::Hipster.paragraph
+      comment.save!
       puts ' - Adding reservation'
       year = Date.current.year
       month = rand(1..12)

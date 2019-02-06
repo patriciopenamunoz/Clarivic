@@ -1,0 +1,51 @@
+<%= render 'layouts/container_base', title:"Reservación: #{@reservation.hostel.name}" do %>
+  <div class="col-12">
+    <div class="media">
+      <%= image_tag @reservation.hostel.principal_image.variant(resize: "350x300!"), class:'align-self-start mr-3' %>
+      <div class="media-body">
+        <h5 class="mt-0">
+        <% if @type == 'in_date' %>
+        <div class="card">
+          <div class="card-body bg-success text-white">
+            Su reservación se encuentra activa y esta acabará en dentro de <%= @reservation.days_left %> días.
+          </div>
+        </div>
+        <% end %>
+        <% if @type == 'future' %>
+        <div class="card">
+          <div class="card-body bg-info text-white">
+            Su reservación aún no ha comenzado, faltan <%= @reservation.days_remaining %> días.
+          </div>
+        </div>
+        <% end %>
+        <% if @type == 'history' %>
+        <div class="card">
+          <div class="card-body bg-dark text-white">
+            Está reservación ha finalizado.
+          </div>
+        </div>
+        <% end %>
+        </h5>
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="fas fa-user"></i> Nombre del administrador: <b><%= @admin.full_name %></b></li>
+            <li class="list-group-item"><i class="fas fa-envelope"></i> Correo de contacto: <b><%= @admin.email %></b></li>
+            <li class="list-group-item"><i class="fas fa-map-marker-alt"></i> Dirección: <b><%= @reservation.hostel.full_address %></b></li>
+            <li class="list-group-item"><i class="fas fa-desktop"></i> Ir a la página del hostel: <b><%= link_to '[LINK]', hostel_path(@reservation.hostel) %></b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="separator-2"></div>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-map-marked-alt"></i> Mapa
+      </div>
+      <div class="card-body">
+        <div id="hostel-map" data-lat="<%= @reservation.hostel.latitude %>" data-long="<%= @reservation.hostel.longitude %>" style="height:300px; width:100%;"></div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -91,7 +91,7 @@
         <% @hostel.comments.order('created_at DESC').each do |comment| %>
         <div class="card">
           <div class="card-body">
-            <div class="toast" aria-live="assertive" aria-atomic="true">
+            <div class="toast" style="background-color:white" aria-live="assertive" aria-atomic="true">
               <div class="toast-header">
                 <strong class="mr-auto">
                   <%= comment.user.full_name %>

@@ -5,6 +5,14 @@ class ReservationsController < ApplicationController
     @reservations = HostelRegistration.where(user: current_user).map { |r| r.pending_reservations }.sum
   end
 
+  def show
+    @reservation = Reservation.find(params[:id])
+    @admin = @reservation.hostel.hostel_registrations.find_by(role: :admin).user
+    @type = 'in_date' if @reservation.in_date?
+    @type = 'future' if !@reservation.started?
+    @type = 'history' if @reservation.expired?
+  end
+
   def create
     @hostel_registration = HostelRegistration.find_by(hostel_id: params[:hostel_id], user: current_user)
     if @hostel_registration.nil?

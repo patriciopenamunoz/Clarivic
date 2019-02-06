@@ -14,5 +14,11 @@
     <%= render 'layouts/navbar' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
+    <% if defined?(notice) && !notice.nil? %>
+      <script>showToastr('success', '<%= notice %>');</script>
+    <% end %>
+    <% if defined?(alert) && !alert.nil? %>
+      <script>showToastr('error', '<%= alert %>');</script>
+    <% end %>
   </body>
 </html>

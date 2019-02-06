@@ -40,6 +40,8 @@ gem 'mini_magick', '~> 4.8'
 # Use Groupdate
 gem 'groupdate'
 
+gem 'toastr-rails'
+
 # Use Activeadmin
 gem 'activeadmin'
 

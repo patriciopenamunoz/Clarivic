@@ -1,2 +1,3 @@
 $('#hostel-feature-modal').modal('toggle');
 $("#feature-<%= @hostel_feature.id %>").replaceWith("<%= j render @hostel_feature %>");
+showToastr('success', 'Caracteristíca modificada');

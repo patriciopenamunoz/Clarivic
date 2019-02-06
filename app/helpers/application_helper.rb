@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def sendError(model)
     key, value = model.errors.first
-    trans = I18n.t "activerecord.attributes.#{model.class.name.downcase}.#{key}"
+    trans = I18n.t "activerecord.attributes.#{model.class.name.underscore}.#{key}"
     render js: "showToastr('error', '#{trans} #{value}')"
   end
 end

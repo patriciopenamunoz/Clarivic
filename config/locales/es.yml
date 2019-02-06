@@ -29,6 +29,9 @@ es:
         address_number: Número residencial
         description: 'Descripción'
         commune: 'Comuna'
+      hostel_feature:
+        title: 'Título'
+        image: 'Imagen'
     errors:
       models:
         hostel:
@@ -42,3 +45,7 @@ es:
               not_a_number: no es un número
             commune:
               required: 'sin definir'
+        hostel_feature:
+          attributes:
+            title:
+              blank: 'sin definir'

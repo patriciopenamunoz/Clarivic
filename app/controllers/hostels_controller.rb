@@ -47,7 +47,9 @@ class HostelsController < ApplicationController
     if user_signed_in?
       hostel_registration = @hostel.hostel_registrations.find_by(user: current_user)
       if hostel_registration
-        @can_comment = true if hostel_registration.reservations.select { |r| r.payed && r.started? }
+        unless hostel_registration.reservations.select { |r| (r.payed && r.started?) }.count.zero?
+          @can_comment = true
+        end
       end
     end
   end

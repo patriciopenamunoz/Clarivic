@@ -3,6 +3,7 @@ class Hostel < ApplicationRecord
 
   has_many :hostel_registrations
   has_many :users, through: :hostel_registrations
+  has_many :comments, through: :hostel_registrations
   has_many :hostel_features
   has_many :room_types
 

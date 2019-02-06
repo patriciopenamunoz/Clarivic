@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :reservations, only: [:update]
   end
   resources :hostels do
+    resources :comments, only: [:new]
     resources :hostel_features, only: [:index, :edit, :create, :update, :destroy]
     resources :room_types, only: [:index, :new, :edit, :create, :update, :destroy] do
       post 'reservations/create'

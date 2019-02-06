@@ -43,6 +43,7 @@ class HostelsController < ApplicationController
   # GET /hostels/1.json
   def show
     @room_types = @hostel.room_types
+    @comment = Comment.new
   end
 
   # GET /hostels/new

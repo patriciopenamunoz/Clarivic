@@ -49,6 +49,8 @@ gem 'geocoder'
 # Use Faker
 gem 'faker'
 
+gem 'leaflet-rails'
+
 #use Font-Awesome
 gem 'fontawesome5-rails'
 

@@ -16,7 +16,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require leaflet/dist/leaflet
+//= require leaflet
 //= stub active_admin
 //= require_tree .
 document.addEventListener('turbolinks:load',() => {

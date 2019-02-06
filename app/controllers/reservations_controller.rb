@@ -57,8 +57,8 @@ class ReservationsController < ApplicationController
       intent: 'sale',
       payer: { payment_method: 'paypal' },
       redirect_urls: {
-        return_url: reservation_execute_url(@reservation),
-        cancel_url: root_url
+        return_url: "https://desolate-brushlands-27927.herokuapp.com/reservations/#{@reservation.id}/execute",
+        cancel_url: 'https://desolate-brushlands-27927.herokuapp.com/'
       },
       transactions: {
         item_list: { items: items },

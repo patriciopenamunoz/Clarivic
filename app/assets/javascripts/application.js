@@ -38,7 +38,8 @@ document.addEventListener('turbolinks:load',() => {
     yearSuffix: ''
   }
 
-  $('.based-datepicker').datepicker( {dateFormat: 'dd/mm/yy'} );
+  $('.datepicker, .based-datepicker').prop('required',true);
+  $('.based-datepicker').datepicker(datepicker_esp);
   [].slice.call(document.getElementsByClassName('datepicker')).forEach((picker) => {
     let based = [].slice
                   .call(document.getElementsByClassName('based-datepicker'))
@@ -49,7 +50,6 @@ document.addEventListener('turbolinks:load',() => {
       $('.datepicker').datepicker($.extend(
         {
           minDate: new Date(),
-          dateFormat: 'dd/mm/yy',
           onSelect: (dateText, inst) => {
             $(based).datepicker("option", "minDate", picker.value);
           }

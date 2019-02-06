@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post 'reservations/set_dates'
   get 'dashboard/hostels'
   get 'dashboard/reservations'
+  get 'dashboard/hostel/:id/tenants', to: 'dashboard#tenants',
+                                                   as: 'dashboard_tenants'
   root 'pages#index'
   get 'reservations/:id/pre_pay', to: 'reservations#pre_pay', as: 'reservation_pre_pay'
   get 'reservations/:id/execute', to: 'reservations#execute', as: 'reservation_execute'

@@ -1,0 +1,73 @@
+<%= render 'layouts/container_base', title:'Listado de inquilinos' do %>
+<div class="col-12">
+  <div class="media">
+    <%= image_tag @hostel.principal_image.variant(resize: "350x300!"), class:'align-self-start mr-3' %>
+    <div class="media-body">
+      <h5 class="mt-0">
+        <% if @tenants.count.zero? %>
+          <div class="card">
+            <div class="card-body">
+              No hay inquilinos activos en este hostal.
+            </div>
+          </div>
+        <% end %>
+        <% @tenants.each do |tenant| %>
+          <div class="card">
+            <div class="card-header">
+              <i class="fas fa-user"></i> <b><%= tenant.full_name %></b>
+            </div>
+            <div class="card-body">
+              <i class="fas fa-envelope"></i> Correo de contacto: <b><%= tenant.email %></b>
+              <div class="separator-2"></div>
+              <div class="card">
+                <div class="card-header">
+                  Reservaciones
+                </div>
+                <div class="card">
+                  <ul class="list-group list-group-flush">
+                    <% tenant.hostel_registrations.find_by(hostel: @hostel, role: 'user').reservations.select(&:in_date?).each do |reservation| %>
+                    <li class="list-group-item">
+                      <span class="badge badge-pill badge-success">Reservación activa</span>
+                      Reservación Solicitada en: <%= "#{reservation.f_starting_date} - #{reservation.f_ending_date}" %>
+                      <div class="separator-1"></div>
+                      <% reservation.room_types.each do |room_type| %>
+                      <div class="card">
+                        <div class="media">
+                          <%= image_tag room_type.image.variant(resize: "100x50!"), class: 'mr-3' %>
+                          <div class="media-body">
+                            <h5 class="mt-0"><%= "#{room_type.name} (#{room_type.reserved_rooms.find_by(reservation: reservation).quantity} habitacion/es)" %></h5>
+                          </div>
+                        </div>
+                      </div>
+                      <% end %>
+                    </li>
+                    <% end %>
+                    <% tenant.hostel_registrations.find_by(hostel: @hostel, role: 'user').reservations.reject(&:in_date?).each do |reservation| %>
+                    <li class="list-group-item">
+                      <span class="badge badge-pill badge-info">Reservación no activa</span>
+                      Reservación Solicitada en: <%= "#{reservation.f_starting_date} - #{reservation.f_ending_date}" %>
+                      <div class="separator-1"></div>
+                      <% reservation.room_types.each do |room_type| %>
+                      <div class="card">
+                        <div class="media">
+                          <%= image_tag room_type.image.variant(resize: "100x50!"), class: 'mr-3' %>
+                          <div class="media-body">
+                            <h5 class="mt-0"><%= "#{room_type.name} (#{room_type.reserved_rooms.find_by(reservation: reservation).quantity} habitacion/es)" %></h5>
+                          </div>
+                        </div>
+                      </div>
+                      <% end %>
+                    </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </h5>
+    </div>
+  </div>
+  <div class="separator-2"></div>
+</div>
+<% end %>

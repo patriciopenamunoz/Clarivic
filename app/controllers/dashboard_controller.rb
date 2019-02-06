@@ -12,4 +12,10 @@ class DashboardController < ApplicationController
     @my_hostels = current_user.hostel_registrations.where(role: 'admin')
     @my_hostels = @my_hostels.map { |h| h.hostel }
   end
+
+  def tenants
+    @hostel = Hostel.find(params[:id])
+    @hostel_registrations = @hostel.hostel_registrations.where(role: 'user')
+    @tenants = @hostel_registrations.select(&:no_expired_reservations?).map { |r| r.user }
+  end
 end

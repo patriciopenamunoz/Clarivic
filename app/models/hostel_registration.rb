@@ -9,4 +9,12 @@ class HostelRegistration < ApplicationRecord
   def pending_reservations
     reservations.where(payed: false)
   end
+
+  def has_active_reservations?
+    reservations.select { |r| r.payed? && r.in_date? }.count.positive?
+  end
+
+  def no_expired_reservations?
+    reservations.select { |r| r.payed? && !r.expired? }.count.positive?
+  end
 end

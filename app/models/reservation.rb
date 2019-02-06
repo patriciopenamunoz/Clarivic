@@ -3,6 +3,7 @@ class Reservation < ApplicationRecord
   has_one :user, through: :hostel_registration
   has_one :hostel, through: :hostel_registration
   has_many :reserved_rooms, dependent: :destroy
+  has_many :room_types, through: :reserved_rooms
 
   def actual_total
     total_counter = 0

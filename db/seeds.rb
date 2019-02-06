@@ -411,7 +411,7 @@ Commune.create(full_name: "Isla de Maipo", short_name: "Isla de Maipo", region: 
 Commune.create(full_name: "Padre Hurtado", short_name: "Padre Hurtado", region: Metropolitana)
 Commune.create(full_name: "Peñaflor", short_name: "Peñaflor", region: Metropolitana)
 
-if Rails.env == 'development'
+
   puts '[ PREPARING DEVELOPMENT ENVIRONMENT ]'
   10.times do |i|
     user = User.new
@@ -540,5 +540,5 @@ if Rails.env == 'development'
   puts "Admin email: #{admin.email}"
   puts "Admin password: #{admin.password}"
   puts ''
-end
+
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

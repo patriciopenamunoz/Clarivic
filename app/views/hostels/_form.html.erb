@@ -1,4 +1,4 @@
-<%= form_with(model: hostel, local: true, multipart: true) do |form| %>
+<%= form_with(model: hostel, multipart: true) do |form| %>
   <% if hostel.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(hostel.errors.count, "error") %> prohibited this hostel from being saved:</h2>

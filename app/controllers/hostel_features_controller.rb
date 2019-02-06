@@ -9,10 +9,12 @@ class HostelFeaturesController < ApplicationController
 
   def create
     params[:hostel_feature][:hostel_id] = params[:hostel_id]
-    @hostel_feature = HostelFeature.create(hostel_feature_params)
-
+    if @hostel_feature == HostelFeature.create(hostel_feature_params)
     respond_to do |format|
       format.js
+    end
+    else
+      render js: "showToast('error', 'No se ha podido agragar la característica, revise los campos ingresados.')"
     end
   end
 

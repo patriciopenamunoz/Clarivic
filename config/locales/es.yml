@@ -26,4 +26,19 @@ es:
         user_id: 'Usuario'
         name: 'Nombre'
         address: 'Dirección'
+        address_number: Número residencial
         description: 'Descripción'
+        commune: 'Comuna'
+    errors:
+      models:
+        hostel:
+          attributes:
+            name:
+              blank: 'no está definido.'
+            address:
+              blank: 'no está definida.'
+            address_number:
+              blank:  no está definido
+              not_a_number: no es un número
+            commune:
+              required: 'sin definir'

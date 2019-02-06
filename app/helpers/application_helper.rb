@@ -6,4 +6,10 @@ module ApplicationHelper
   def toCLP value
     "$#{number_with_delimiter value.to_i, delimiter: '.'}"
   end
+
+  def sendError(model)
+    key, value = model.errors.first
+    trans = I18n.t "activerecord.attributes.#{model.class.name.downcase}.#{key}"
+    render js: "showToastr('error', '#{trans} #{value}')"
+  end
 end

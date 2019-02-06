@@ -67,22 +67,29 @@ class HostelsController < ApplicationController
   # POST /hostels
   # POST /hostels.json
   def create
+    @regions = Region.all
     @hostel = Hostel.new(hostel_params)
-    (@hostel.latitude, @hostel.longitude) = Geocoder.search(@hostel.full_address).first.coordinates
-    @hostel.save
-
-    @hostel_registration = HostelRegistration.new
-    @hostel_registration.user = current_user
-    @hostel_registration.hostel = @hostel
-    @hostel_registration.admin!
-    respond_to do |format|
-      if @hostel_registration.save
-        format.html { redirect_to dashboard_hostels_path, notice: 'Hostal registrado correctamente.' }
-        format.json { render :show, status: :created, location: @hostel }
+    if @hostel.valid?
+      unless params[:hostel][:principal_image].nil?
+        geocoder = Geocoder.search(@hostel.full_address)
+        unless geocoder.count.zero?
+          (@hostel.latitude, @hostel.longitude) = geocoder.first.coordinates
+          @hostel_registration = HostelRegistration.new
+          @hostel_registration.user = current_user
+          @hostel_registration.hostel = @hostel
+          @hostel_registration.admin!
+          respond_to do |format|
+            format.html { redirect_to dashboard_hostels_path, notice: 'Hostal registrado correctamente.' }
+            format.json { render :show, status: :created, location: @hostel }
+          end
+        else
+          render js: "showToastr('error', 'La dirección no es válida.')"
+        end
       else
-        format.html { render :new }
-        format.json { render json: @hostel.errors, status: :unprocessable_entity }
+        render js: "showToastr('error', 'Falta subir la imagen.')"
       end
+    else
+      sendError @hostel
     end
   end
 
@@ -90,13 +97,18 @@ class HostelsController < ApplicationController
   # PATCH/PUT /hostels/1.json
   def update
     respond_to do |format|
-      if @hostel.update(hostel_params)
-        (@hostel.latitude, @hostel.longitude) = Geocoder.search(@hostel.address).first.coordinates
-        format.html { redirect_to dashboard_hostels_path, notice: 'Hostel was successfully updated.' }
-        format.json { render :show, status: :ok, location: @hostel }
+      if @hostel.valid?
+        geocoder = Geocoder.search(@hostel.address)
+        unless geocoder.count.zero?
+          (@hostel.latitude, @hostel.longitude) = geocoder.first.coordinates
+          @hostel.update(hostel_params)
+          format.html { redirect_to dashboard_hostels_path, notice: 'El hostal ha sido actualizado.' }
+          format.json { render :show, status: :ok, location: @hostel }
+        else
+          render js: "showToastr('error', 'La dirección no es válida.')"
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @hostel.errors, status: :unprocessable_entity }
+        sendError @hostel
       end
     end
   end
@@ -107,7 +119,7 @@ class HostelsController < ApplicationController
     @hostel.hostel_registrations.destroy_all
     @hostel.destroy
     respond_to do |format|
-      format.html { redirect_to dashboard_hostels_path, notice: 'Hostel was successfully destroyed.' }
+      format.html { redirect_to dashboard_hostels_path, notice: 'El hostal fue eliminado.' }
       format.json { head :no_content }
     end
   end

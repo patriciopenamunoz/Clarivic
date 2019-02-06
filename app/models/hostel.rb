@@ -1,11 +1,16 @@
 class Hostel < ApplicationRecord
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :address_number, presence: true, numericality: { only_integer: true }
+  validates :principal_image, presence: true
+
   belongs_to :commune
 
-  has_many :hostel_registrations
+  has_many :hostel_registrations, dependent: :destroy
   has_many :users, through: :hostel_registrations
   has_many :comments, through: :hostel_registrations
-  has_many :hostel_features
-  has_many :room_types
+  has_many :hostel_features, dependent: :destroy
+  has_many :room_types, dependent: :destroy
 
   has_one :region, through: :commune
   has_one_attached :principal_image

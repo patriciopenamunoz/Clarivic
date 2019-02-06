@@ -43,7 +43,13 @@ class HostelsController < ApplicationController
   # GET /hostels/1.json
   def show
     @room_types = @hostel.room_types
-    @comment = Comment.new
+    @can_comment = false
+    if user_signed_in?
+      hostel_registration = @hostel.hostel_registrations.find_by(user: current_user)
+      if hostel_registration
+        @can_comment = true if hostel_registration.reservations.select { |r| r.payed && r.started? }
+      end
+    end
   end
 
   # GET /hostels/new

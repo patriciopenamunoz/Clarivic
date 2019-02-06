@@ -32,6 +32,13 @@ es:
       hostel_feature:
         title: 'Título'
         image: 'Imagen'
+        description: 'Descripción'
+      room_type:
+        name: 'Nombre'
+        number_rooms: 'Número de habitaciones'
+        value_per_night: 'Valor por noche'
+        image: 'Imagen'
+        description: 'Descripción'
     errors:
       models:
         hostel:
@@ -48,4 +55,12 @@ es:
         hostel_feature:
           attributes:
             title:
+              blank: 'sin definir'
+        room_type:
+          attributes:
+            name:
+              blank: 'sin definir'
+            number_rooms:
+              blank: 'sin definir'
+            value_per_night:
               blank: 'sin definir'

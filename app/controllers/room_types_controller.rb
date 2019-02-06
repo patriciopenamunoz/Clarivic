@@ -1,4 +1,5 @@
 class RoomTypesController < ApplicationController
+  include ApplicationHelper
   before_action :authenticate_user!
 
   def index
@@ -24,18 +25,29 @@ class RoomTypesController < ApplicationController
 
   def create
     params[:room_type][:hostel_id] = params[:hostel_id]
-    @room_type = RoomType.create(room_type_params)
-    respond_to do |format|
-      @room_types = RoomType.where(hostel_id: params[:hostel_id])
-      format.js
+    unless params[:room_type][:image].nil?
+      @room_type = RoomType.new(room_type_params)
+      if @room_type.save
+      respond_to do |format|
+        @room_types = RoomType.where(hostel_id: params[:hostel_id])
+        format.js
+      end
+      else
+        sendError @room_type
+      end
+    else
+      render js: "showToastr('error', 'Falta subir una imagen.')"
     end
   end
 
   def update
     @room_type = RoomType.find(params[:id])
-    @room_type.update(room_type_params)
-    respond_to do |format|
-      format.js
+    if @room_type.update(room_type_params)
+      respond_to do |format|
+        format.js
+      end
+    else
+      sendError @room_type
     end
   end
 

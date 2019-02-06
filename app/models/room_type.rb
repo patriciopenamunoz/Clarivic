@@ -1,4 +1,8 @@
 class RoomType < ApplicationRecord
+  validates :name, presence: true
+  validates :number_rooms, presence: true, numericality: { only_integer: true }
+  validates :value_per_night, presence: true, numericality: { only_integer: true }
+
   belongs_to :hostel
   has_many :reserved_rooms
 

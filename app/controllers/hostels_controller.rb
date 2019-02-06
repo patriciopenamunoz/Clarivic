@@ -86,7 +86,7 @@ class HostelsController < ApplicationController
           render js: "showToastr('error', 'La dirección no es válida.')"
         end
       else
-        render js: "showToastr('error', 'Falta subir la imagen.')"
+        render js: "showToastr('error', 'Falta subir una imagen.')"
       end
     else
       sendError @hostel

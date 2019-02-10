@@ -434,11 +434,13 @@ Commune.create(full_name: "Peñaflor", short_name: "Peñaflor", region: Metropol
       hostel = Hostel.new
       hostel.name = Faker::FunnyName.name
       hostel.description = Faker::Hipster.paragraph
-      hostel.commune = Commune.all.sample
-
-      basic_address = "Chile, #{hostel.commune.region.full_name}, #{hostel.commune.full_name}"
-      puts "- Searching coordinates for #{basic_address}"
-      cord = Geocoder.search(basic_address).first.coordinates
+      cord = []
+      while cord.count.zero?
+        hostel.commune = Commune.all.sample
+        basic_address = "Chile, #{hostel.commune.region.full_name}, #{hostel.commune.full_name}"
+        cord = Geocoder.search(basic_address)
+      end
+      cord = cord.first.coordinates
       hostel.latitude  = rand((cord[0] - 0.01)..(cord[0] + 0.01))
       hostel.longitude = rand((cord[1] - 0.01)..(cord[1] + 0.01))
       puts "- Searching address for [#{hostel.latitude}, #{hostel.longitude}]"
@@ -546,4 +548,4 @@ Commune.create(full_name: "Peñaflor", short_name: "Peñaflor", region: Metropol
   puts "Admin password: #{admin.password}"
   puts ''
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'admin@admin.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
